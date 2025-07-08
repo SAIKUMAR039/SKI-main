@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Download, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import TypewriterEffect from './animations/TypewriterEffect';
 import TextReveal from './animations/TextReveal';
@@ -12,15 +12,10 @@ const Hero: React.FC = () => {
   const navigate = useNavigate();
   const typewriterWords = ['EXCELLENCE', 'INNOVATION', 'CREATIVITY', 'SUCCESS'];
 
-  const scrollToWork = () => {
-    const workSection = document.getElementById('work');
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden ">
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0">
         <Aurora
@@ -123,9 +118,10 @@ const Hero: React.FC = () => {
               <span className="relative z-10">Start Your Campaign</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200 relative z-10" />
             </motion.button>
-            
+           
+          <a href="https://drive.google.com/file/d/18CGhA6wtSWSfjdwfNwg6sAT0RpassUI5/view?usp=sharing" target='_blank' className='hover:cursor-pointer'>
             <motion.button
-              onClick={scrollToWork}
+              
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-ski-black text-ski-black px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-ski-black hover:text-white transition-all duration-300 flex items-center gap-2 group relative overflow-hidden text-sm sm:text-base"
@@ -134,9 +130,10 @@ const Hero: React.FC = () => {
                 className="absolute inset-0 bg-ski-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                 initial={false}
               />
-              <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-200 relative z-10" />
-              <span className="relative z-10">View Our Work</span>
+              <Download className="w-5 h-5 group-hover:scale-110 transition-transform duration-200 relative z-10" />
+              <span className="relative z-10">Download Business Proposal</span>
             </motion.button>
+          </a>
           </motion.div>
         </div>
       </div>
