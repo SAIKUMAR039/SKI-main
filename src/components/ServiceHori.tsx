@@ -4,10 +4,7 @@ import {
   GoogleLogo,
   InstagramLogo,
   TwitterLogo,
-  LinkedInLogo,
-  GoogleAdsLogo,
-  
-  LocalBusinessLogo
+
 } from './CompanyLogos';
 
 interface Service {
@@ -18,11 +15,7 @@ interface Service {
 }
 
 const services: Service[] = [
-  {
-    id: 'local',
-    title: 'Go Local',
-    icon: <LocalBusinessLogo className="w-6 h-6" />
-  },
+ 
   {
     id: 'facebook',
     title: 'Facebook',
@@ -43,17 +36,7 @@ const services: Service[] = [
     title: 'Twitter',
     icon: <TwitterLogo className="w-6 h-6" />
   },
-  {
-    id: 'adwords',
-    title: 'AdWords',
-    icon: <GoogleAdsLogo className="w-6 h-6" />
-  },
-  {
-    id: 'linkedin',
-    title: 'LinkedIn',
-    description: 'The best way to connect with other professionals and businesses.',
-    icon: <LinkedInLogo className="w-6 h-6" />
-  },
+
  
 ];
 

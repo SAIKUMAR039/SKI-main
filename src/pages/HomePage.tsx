@@ -5,13 +5,14 @@ import Services from '../components/Services';
 import Portfolio from '../components/Portfolio';
 import Contact from '../components/Contact';
 import Testimonials from '../components/Testimonials';
-import ServiceHori from '../components/ServiceHori';
+
+import CompanyLogos from '../components/CompanyLogos';
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
-      <ServiceHori />
+      <CompanyLogos />
       <About />
       <Services />
       <Portfolio />
