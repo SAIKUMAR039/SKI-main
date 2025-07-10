@@ -13,7 +13,7 @@ const Portfolio: React.FC = () => {
 
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const categories = ['All', 'Social Media', 'Video Production', 'Web Development', 'Analytics', 'Advertising'];
+  const categories = ['All', 'Video Production', 'Web Development'];
 
  
     const projects = [
@@ -72,6 +72,111 @@ const Portfolio: React.FC = () => {
           { label: 'SEO Score', value: '94%', icon: Users },
         ],
         featured: true,
+      },
+      {
+        title: 'Short Film: Urban Pulse',
+        category: 'Video Production',
+        description: 'A dynamic short capturing the rhythm and energy of city life.',
+        image: 'https://img.youtube.com/vi/Hgjpz-CFIRk/maxresdefault.jpg',
+        link: 'https://youtube.com/shorts/Hgjpz-CFIRk',
+        tags: ['Short Film', 'Urban', 'Cinematography'],
+        metrics: [
+          { label: 'Views', value: '10K+', icon: TrendingUp },
+          { label: 'Duration', value: '0:30', icon: Award },
+          { label: 'Platform', value: 'YouTube Shorts', icon: ExternalLink },
+        ],
+        featured: false,
+        isVideo: true,
+      },
+      {
+        title: 'Brand Teaser: IQM',
+        category: 'Video Production',
+        description: 'A punchy teaser for IQM, blending motion graphics and live action.',
+        image: 'https://img.youtube.com/vi/IQmKy-j6bb4/maxresdefault.jpg',
+        link: 'https://youtube.com/shorts/IQmKy-j6bb4',
+        tags: ['Branding', 'Teaser', 'Motion Graphics'],
+        metrics: [
+          { label: 'Views', value: '8K+', icon: TrendingUp },
+          { label: 'Duration', value: '0:30', icon: Award },
+          { label: 'Platform', value: 'YouTube Shorts', icon: ExternalLink },
+        ],
+        featured: false,
+        isVideo: true,
+      },
+      {
+        title: 'Promo: Up2FW',
+        category: 'Video Production',
+        description: 'A fast-paced promo for Up2FW, highlighting key features and benefits.',
+        image: 'https://img.youtube.com/vi/up2fw5w4Bgw/maxresdefault.jpg',
+        link: 'https://youtube.com/shorts/up2fw5w4Bgw',
+        tags: ['Promo', 'Product', 'Editing'],
+        metrics: [
+          { label: 'Views', value: '12K+', icon: TrendingUp },
+          { label: 'Duration', value: '0:30', icon: Award },
+          { label: 'Platform', value: 'YouTube Shorts', icon: ExternalLink },
+        ],
+        featured: false,
+        isVideo: true,
+      },
+      {
+        title: 'Ad: QP-pyGP',
+        category: 'Video Production',
+        description: 'A creative ad spot for QP-pyGP, focusing on storytelling and visuals.',
+        image: 'https://img.youtube.com/vi/QP-pyGPbvhY/maxresdefault.jpg',
+        link: 'https://youtube.com/shorts/QP-pyGPbvhY',
+        tags: ['Ad', 'Storytelling', 'Creative'],
+        metrics: [
+          { label: 'Views', value: '9K+', icon: TrendingUp },
+          { label: 'Duration', value: '0:30', icon: Award },
+          { label: 'Platform', value: 'YouTube Shorts', icon: ExternalLink },
+        ],
+        featured: false,
+        isVideo: true,
+      },
+      {
+        title: 'Documentary: The Art of Making',
+        category: 'Video Production',
+        description: 'A mini-documentary exploring the creative process behind our projects.',
+        image: 'https://img.youtube.com/vi/j4YIPSzNMZA/maxresdefault.jpg',
+        link: 'https://www.youtube.com/watch?v=j4YIPSzNMZA',
+        tags: ['Documentary', 'Process', 'Behind the Scenes'],
+        metrics: [
+          { label: 'Views', value: '15K+', icon: TrendingUp },
+          { label: 'Duration', value: '2:10', icon: Award },
+          { label: 'Platform', value: 'YouTube', icon: ExternalLink },
+        ],
+        featured: true,
+        isVideo: true,
+      },
+      {
+        title: 'Campaign: v89zpgVCCZ0',
+        category: 'Video Production',
+        description: 'A campaign video designed to inspire and engage audiences.',
+        image: 'https://img.youtube.com/vi/v89zpgVCCZ0/maxresdefault.jpg',
+        link: 'https://www.youtube.com/watch?v=v89zpgVCCZ0',
+        tags: ['Campaign', 'Inspiration', 'Engagement'],
+        metrics: [
+          { label: 'Views', value: '11K+', icon: TrendingUp },
+          { label: 'Duration', value: '1:45', icon: Award },
+          { label: 'Platform', value: 'YouTube', icon: ExternalLink },
+        ],
+        featured: false,
+        isVideo: true,
+      },
+      {
+        title: 'Showcase: y_TDqDI6YQ8',
+        category: 'Video Production',
+        description: 'A showcase of our latest creative video work.',
+        image: 'https://img.youtube.com/vi/y_TDqDI6YQ8/maxresdefault.jpg',
+        link: 'https://www.youtube.com/watch?v=y_TDqDI6YQ8',
+        tags: ['Showcase', 'Creative', 'Video'],
+        metrics: [
+          { label: 'Views', value: '13K+', icon: TrendingUp },
+          { label: 'Duration', value: '1:20', icon: Award },
+          { label: 'Platform', value: 'YouTube', icon: ExternalLink },
+        ],
+        featured: false,
+        isVideo: true,
       },
       
     ]
@@ -210,17 +315,32 @@ const Portfolio: React.FC = () => {
                 <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
                   {/* Image Section */}
                   <div className="relative overflow-hidden">
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className={`w-full object-cover ${
-                        project.featured 
-                          ? 'h-48 sm:h-56 lg:h-64' 
-                          : 'h-40 sm:h-48 lg:h-52'
-                      }`}
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                    />
+                    {project.isVideo ? (
+                      <div className="relative">
+                        <motion.img
+                          src={project.image}
+                          alt={project.title}
+                          className={`w-full object-cover ${project.featured ? 'h-48 sm:h-56 lg:h-64' : 'h-40 sm:h-48 lg:h-52'}`}
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="bg-white/80 rounded-full p-3 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-ski-accent">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.25v13.5l13.5-6.75-13.5-6.75z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className={`w-full object-cover ${project.featured ? 'h-48 sm:h-56 lg:h-64' : 'h-40 sm:h-48 lg:h-52'}`}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    )}
                     
                     {/* Gradient Overlay using SKI colors */}
                     <div className="absolute inset-0 bg-gradient-to-t from-ski-black/60 via-ski-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />

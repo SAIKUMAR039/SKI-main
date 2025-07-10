@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
-import { Video, Users, Target, BarChart, Camera, Megaphone, Monitor, Database, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Video, Users, Target, BarChart, Megaphone, Monitor, Database, ArrowUpRight, Sparkles, Bot } from 'lucide-react';
 
 const Services: React.FC = () => {
   const navigate = useNavigate();
@@ -63,10 +63,10 @@ const Services: React.FC = () => {
       iconBg: 'bg-amber-500',
     },
     {
-      icon: Camera,
-      title: 'Content Creation',
-      description: 'High-quality content creation including photography, videography, and graphic design for all platforms.',
-      features: ['Product Photography', 'Brand Videos', 'Graphic Design', 'Content Planning'],
+      icon: Bot,
+      title: 'AI Automation Tools',
+      description: 'AI Automation Tools that help you automate your marketing and business processes.',
+      features: ['AI Automation Tools', 'AI Chatbot', 'AI Email Marketing', 'AI Analytics'],
       color: '#EF4444',
       gradient: 'from-red-500 to-red-600',
       bgGradient: 'from-red-50 to-red-100',
@@ -74,9 +74,9 @@ const Services: React.FC = () => {
     },
     {
       icon: Megaphone,
-      title: 'Influencer Marketing',
-      description: 'Strategic influencer partnerships that amplify your brand message and reach new audiences authentically.',
-      features: ['Influencer Outreach', 'Campaign Management', 'Performance Tracking', 'Brand Partnerships'],
+      title: 'AI Marketing',
+      description: 'Strategic AI marketing that amplify your brand message and reach new audiences authentically.',
+      features: ['AI Marketing', 'AI Chatbot', 'AI Content Creation', 'AI Analytics'],
       color: '#8B5CF6',
       gradient: 'from-violet-500 to-violet-600',
       bgGradient: 'from-violet-50 to-violet-100',
