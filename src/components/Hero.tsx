@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-import TypewriterEffect from './animations/TypewriterEffect';
 import TextReveal from './animations/TextReveal';
 import GradientText from './animations/GradientText';
 import WaveText from './animations/WaveText';
 import Aurora from './Aurora';
+import RotatingText from './animations/Rotating';
 
 const Hero: React.FC = () => {
   const navigate = useNavigate();
-  const typewriterWords: string[] = ['EXCELLENCE',  'CREATIVITY', ];
-
-  const [mobileWordIndex, setMobileWordIndex] = useState<number>(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMobileWordIndex((prev) => (prev + 1) % typewriterWords.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [typewriterWords.length]);
+  const typewriterWords: string[] = [' EXCELLENCE',  ' CREATIVITY', ' INNOVATION', ' AI DRIVEN'];
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -80,33 +71,36 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Responsive Subtitle */}
-            <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-700 mb-6 px-4 text-center sm:text-left">
+            <div className="text-base sm:text-lg px-4 md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-700 mb-6 px-4 text-center sm:text-left sm:justify-center sm:items-center sm:flex w-full">
               We create digital experiences with{' '}
-              {/* Mobile View Animation */}
-              <span className="inline-block sm:hidden text-ski-accent font-bold min-h-[1.5em]">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={typewriterWords[mobileWordIndex]}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.4 }}
-                    className="inline-block"
-                  >
-                    {typewriterWords[mobileWordIndex]}
-                  </motion.span>
-                </AnimatePresence>
+              {/* Mobile: show rotating text */}
+              <span className="inline font-bold text-ski-accent align-middle sm:hidden justify-center items-center flex w-full">
+                <RotatingText
+                  texts={typewriterWords}
+                  mainClassName="inline font-bold text-ski-accent align-middle"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
               </span>
-
-              {/* Desktop View Typewriter */}
-              <span className="hidden sm:inline">
-                <TypewriterEffect
-                  words={typewriterWords}
-                  className="text-ski-accent font-bold"
-                  cursorClassName="text-ski-accent"
-                  typeSpeed={150}
-                  deleteSpeed={100}
-                  delayBetweenWords={2000}
+              {/* Desktop: show rotating text */}
+              <span className="hidden sm:inline font-bold text-ski-accent align-middle ">
+                <RotatingText
+                  texts={typewriterWords}
+                  mainClassName="inline font-bold text-ski-accent align-middle "
+                  staggerFrom="first"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
                 />
               </span>
             </div>

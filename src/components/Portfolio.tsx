@@ -74,7 +74,7 @@ const Portfolio: React.FC = () => {
         featured: true,
       },
       {
-        title: 'Short Film: Urban Pulse',
+        title: 'Podcast',
         category: 'Video Production',
         description: 'A dynamic short capturing the rhythm and energy of city life.',
         image: 'https://img.youtube.com/vi/Hgjpz-CFIRk/maxresdefault.jpg',
@@ -89,7 +89,7 @@ const Portfolio: React.FC = () => {
         isVideo: true,
       },
       {
-        title: 'Brand Teaser: IQM',
+        title: 'Food Edit ',
         category: 'Video Production',
         description: 'A punchy teaser for IQM, blending motion graphics and live action.',
         image: 'https://img.youtube.com/vi/IQmKy-j6bb4/maxresdefault.jpg',
@@ -103,23 +103,9 @@ const Portfolio: React.FC = () => {
         featured: false,
         isVideo: true,
       },
+      
       {
-        title: 'Promo: Up2FW',
-        category: 'Video Production',
-        description: 'A fast-paced promo for Up2FW, highlighting key features and benefits.',
-        image: 'https://img.youtube.com/vi/up2fw5w4Bgw/maxresdefault.jpg',
-        link: 'https://youtube.com/shorts/up2fw5w4Bgw',
-        tags: ['Promo', 'Product', 'Editing'],
-        metrics: [
-          { label: 'Views', value: '12K+', icon: TrendingUp },
-          { label: 'Duration', value: '0:30', icon: Award },
-          { label: 'Platform', value: 'YouTube Shorts', icon: ExternalLink },
-        ],
-        featured: false,
-        isVideo: true,
-      },
-      {
-        title: 'Ad: QP-pyGP',
+        title: 'Color Grading',
         category: 'Video Production',
         description: 'A creative ad spot for QP-pyGP, focusing on storytelling and visuals.',
         image: 'https://img.youtube.com/vi/QP-pyGPbvhY/maxresdefault.jpg',
@@ -134,7 +120,7 @@ const Portfolio: React.FC = () => {
         isVideo: true,
       },
       {
-        title: 'Documentary: The Art of Making',
+        title: 'GO KARTING EDIT',
         category: 'Video Production',
         description: 'A mini-documentary exploring the creative process behind our projects.',
         image: 'https://img.youtube.com/vi/j4YIPSzNMZA/maxresdefault.jpg',
@@ -149,7 +135,7 @@ const Portfolio: React.FC = () => {
         isVideo: true,
       },
       {
-        title: 'Campaign: v89zpgVCCZ0',
+        title: 'MERLION Advertisement Edit',
         category: 'Video Production',
         description: 'A campaign video designed to inspire and engage audiences.',
         image: 'https://img.youtube.com/vi/v89zpgVCCZ0/maxresdefault.jpg',
@@ -164,7 +150,7 @@ const Portfolio: React.FC = () => {
         isVideo: true,
       },
       {
-        title: 'Showcase: y_TDqDI6YQ8',
+        title: 'Youtube Full Video Edit',
         category: 'Video Production',
         description: 'A showcase of our latest creative video work.',
         image: 'https://img.youtube.com/vi/y_TDqDI6YQ8/maxresdefault.jpg',
