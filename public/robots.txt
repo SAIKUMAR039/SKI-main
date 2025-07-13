@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.skicreativelab.tech/sitemap.xml
+
+# Crawl-delay (optional, for rate limiting)
+Crawl-delay: 1 
