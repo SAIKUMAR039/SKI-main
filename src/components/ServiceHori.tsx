@@ -1,11 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import {
-  FacebookLogo,
-  GoogleLogo,
-  InstagramLogo,
-  TwitterLogo,
 
-} from './CompanyLogos';
+}
 
 interface Service {
   id: string;
