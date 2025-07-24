@@ -17,6 +17,67 @@ const Portfolio: React.FC = () => {
 
  
     const projects = [
+      {
+        title: 'Nerdy AI Studio',
+        category: 'Web Development',
+        description: 'A powerful AI-powered content generation platform that offers specialized tools for various content creation needs - from code analysis to professional writing.',
+        image: '/projects/nerdy-ai-studio.png',
+        link: 'https://nerdyn.saikumarthota.live/',
+        tags: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Gemini API', 'Stripe', 'Vite'],
+        metrics: [
+          { label: 'Year', value: '2025', icon: Award },
+          { label: 'GitHub', value: 'Repo', icon: ExternalLink },
+          { label: 'Live Demo', value: 'Demo', icon: TrendingUp },
+        ],
+        featured: false,
+        isVideo: false,
+      },
+      {
+        title: 'Imagine',
+        category: 'Web Development',
+        description: 'Imagine is an AI-powered image generation application. Users can create unique images based on text descriptions using advanced AI models.',
+        image: '/projects/imagine.png',
+        link: 'https://imagine.saikumarthota.live/',
+        tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React', 'Gemini API'],
+        metrics: [
+          { label: 'Year', value: '2024', icon: Award },
+          { label: 'GitHub', value: 'Repo', icon: ExternalLink },
+          { label: 'Live Demo', value: 'Demo', icon: TrendingUp },
+        ],
+        featured: false,
+        isVideo: false,
+      },
+      {
+        title: 'AI Resume Screening',
+        category: 'Web Development',
+        description: 'AI Resume Screening is a web application that uses AI to analyze and screen resumes. It provides insights and recommendations for hiring managers.',
+        image: '/projects/airesume-screening.png',
+        link: 'https://airesume-screening.vercel.app/',
+        tags: ['JavaScript', 'Tailwind CSS', 'React', 'Python', 'Gemini API'],
+        metrics: [
+          { label: 'Year', value: '2025', icon: Award },
+          { label: 'GitHub', value: 'Repo', icon: ExternalLink },
+          { label: 'Live Demo', value: 'Demo', icon: TrendingUp },
+        ],
+        featured: false,
+        isVideo: false,
+      },
+      {
+        title: 'File Share',
+        category: 'Web Development',
+        description: 'File Share is a web application that allows users to share files with others. Users can upload files and share them with a unique link.',
+        image: '/projects/file-share.png',
+        link: 'https://file-share.saikumarthota.live/',
+        tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'React', 'Node.js'],
+        metrics: [
+          { label: 'Year', value: '2024', icon: Award },
+          { label: 'GitHub', value: 'Repo', icon: ExternalLink },
+          { label: 'Live Demo', value: 'Demo', icon: TrendingUp },
+        ],
+        featured: false,
+        isVideo: false,
+      },
+      
      
       {
         title: 'Haritha Infra Tech',
@@ -123,6 +184,7 @@ const Portfolio: React.FC = () => {
         featured: false,
         isVideo: true,
       },
+      
       
     ]
     
