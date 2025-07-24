@@ -21,7 +21,7 @@ const Portfolio: React.FC = () => {
         title: 'Nerdy AI Studio',
         category: 'Web Development',
         description: 'A powerful AI-powered content generation platform that offers specialized tools for various content creation needs - from code analysis to professional writing.',
-        image: '/projects/nerdy-ai-studio.png',
+        image: '/nerdyn.png',
         link: 'https://nerdyn.saikumarthota.live/',
         tags: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Gemini API', 'Stripe', 'Vite'],
         metrics: [
@@ -36,7 +36,7 @@ const Portfolio: React.FC = () => {
         title: 'Imagine',
         category: 'Web Development',
         description: 'Imagine is an AI-powered image generation application. Users can create unique images based on text descriptions using advanced AI models.',
-        image: '/projects/imagine.png',
+        image: '/imagine.png',
         link: 'https://imagine.saikumarthota.live/',
         tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React', 'Gemini API'],
         metrics: [
@@ -51,7 +51,7 @@ const Portfolio: React.FC = () => {
         title: 'AI Resume Screening',
         category: 'Web Development',
         description: 'AI Resume Screening is a web application that uses AI to analyze and screen resumes. It provides insights and recommendations for hiring managers.',
-        image: '/projects/airesume-screening.png',
+        image: '/resume.png',
         link: 'https://airesume-screening.vercel.app/',
         tags: ['JavaScript', 'Tailwind CSS', 'React', 'Python', 'Gemini API'],
         metrics: [
@@ -66,7 +66,7 @@ const Portfolio: React.FC = () => {
         title: 'File Share',
         category: 'Web Development',
         description: 'File Share is a web application that allows users to share files with others. Users can upload files and share them with a unique link.',
-        image: '/projects/file-share.png',
+        image: '/file-share.png',
         link: 'https://file-share.saikumarthota.live/',
         tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'React', 'Node.js'],
         metrics: [
