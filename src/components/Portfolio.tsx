@@ -17,48 +17,7 @@ const Portfolio: React.FC = () => {
 
  
     const projects = [
-      {
-        title: 'St. Ann\'s Junior College Website',
-        category: 'Web Development',
-        description: 'Developed a modern and responsive college website with integrated email-based admission and contact features.',
-        image: '/stanns.png', // Replace with an actual OG or screenshot if you have
-        link: 'https://stanns-updated.vercel.app/',
-        tags: ['Website Development', 'College Admissions', 'Email Integration', 'Responsive Design'],
-        metrics: [
-          { label: 'Admission Leads', value: '200+', icon: Users },
-          { label: 'Load Speed', value: '1.2s', icon: TrendingUp },
-          { label: 'User Satisfaction', value: '98%', icon: Award },
-        ],
-        featured: true,
-      },
-      {
-        title: 'VisionFame Pvt. Ltd.',
-        category: 'Digital Marketing',
-        description: 'Designed and developed company website showcasing digital services and improved online presence.',
-        image: 'https://visionfamepvtltd.com/assets/hero-DUMex61H.jpeg', // Replace with relevant image or screenshot
-        link: 'https://visionfamepvtltd.com/',
-        tags: ['Digital Agency Website', 'Lead Generation', 'Design', 'SEO'],
-        metrics: [
-          { label: 'Client Growth', value: '350%', icon: TrendingUp },
-          { label: 'Avg. Session Duration', value: '3.5 min', icon: Award },
-          { label: 'Conversion Rate', value: '11.4%', icon: Users },
-        ],
-        featured: false,
-      },
-      {
-        title: 'St. Peter\'s CBSE School Website',
-        category: 'Web Development',
-        description: 'Created a clean, informative website for a CBSE school with SEO optimization and mobile-first UI.',
-        image: '/stpeters.png', // Use actual screenshot if available
-        link: 'https://stpeterscbse.com/',
-        tags: ['Web Design', 'SEO', 'Mobile Optimization', 'School Website'],
-        metrics: [
-          { label: 'Visitors Increase', value: '180%', icon: TrendingUp },
-          { label: 'Mobile Score', value: '96/100', icon: Award },
-          { label: 'Bounce Rate', value: 'Below 30%', icon: Users },
-        ],
-        featured: true,
-      },
+     
       {
         title: 'Haritha Infra Tech',
         category: 'Web Development',
