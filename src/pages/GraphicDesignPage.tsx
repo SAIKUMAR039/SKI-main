@@ -30,6 +30,13 @@ const GraphicDesignPage: React.FC = () => {
     {
       id: 2,
       title: 'Naveen Reddy',
+      type: 'video',
+      src: '/media/NaveenReddyAd.mp4',
+      height: 'h-80',
+    },
+    {
+      id: 2,
+      title: 'Naveen Reddy',
       type: 'image',
       src: '/media/NaveenReddyPoster.png',
       height: 'h-80',
