@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import ScrollIndicator from './components/ScrollIndicator';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
+import GraphicDesignPage from './pages/GraphicDesignPage';
 
 function App() {
   const location = useLocation();
@@ -75,6 +76,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/graphic-design" element={<GraphicDesignPage />} />
       </Routes>
       
       <Footer />

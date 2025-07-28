@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 import { ExternalLink, TrendingUp, Users, Award, Filter } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
- 
+  const navigate = useNavigate();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -447,7 +448,33 @@ const Portfolio: React.FC = () => {
         </AnimatePresence>
 
         {/* Bottom CTA - Mobile Optimized */}
-        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="text-center mt-12 sm:mt-16 lg:mt-20"
+        >
+          <div className="bg-gradient-to-r from-ski-black to-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 relative overflow-hidden mx-4 sm:mx-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-ski-accent/10 to-orange-500/10 opacity-50" />
+            <div className="relative z-10">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4">
+                Want to See More?
+              </h3>
+              <p className="text-gray-300 mb-4 sm:mb-6 lg:mb-8 max-w-2xl mx-auto text-sm sm:text-base">
+                Explore our complete graphic design portfolio with detailed case studies and creative process insights.
+              </p>
+              <motion.button
+                onClick={() => navigate('/graphic-design')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-ski-accent to-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold flex items-center gap-2 mx-auto hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+              >
+                View Full Gallery
+                <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
