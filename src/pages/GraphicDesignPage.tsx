@@ -121,16 +121,7 @@ const GraphicDesignPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Back Button */}
-          <motion.button
-            onClick={() => navigate('/')}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 text-ski-black hover:text-ski-accent transition-colors duration-300 mb-6 sm:mb-8 group text-sm sm:text-base"
-          >
-            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform duration-200" />
-            <span className="font-medium">Back to Home</span>
-          </motion.button>
+          
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -170,7 +161,7 @@ const GraphicDesignPage: React.FC = () => {
       </section>
 
       {/* Pinterest-style Gallery */}
-      <section className="py-8 sm:py-12 lg:py-16">
+      <section className="py-8 sm:py-12 lg:py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Masonry Grid - 2 columns mobile, 5 columns desktop */}
           <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 sm:gap-6 lg:gap-8 space-y-4 sm:space-y-6 lg:space-y-8">
