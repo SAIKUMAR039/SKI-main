@@ -37,6 +37,10 @@ export default {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
         },
+        'float-delayed': {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-15px) rotate(5deg)' },
+        },
         glow: {
           '0%': { boxShadow: '0 0 5px rgba(255, 107, 53, 0.5)' },
           '100%': { boxShadow: '0 0 20px rgba(255, 107, 53, 0.8)' },
