@@ -43,7 +43,9 @@ const Footer: React.FC = () => {
         { name: 'Case Studies', href: '#' },
         { name: 'Marketing Tips', href: '#' },
         { name: 'Support', href: '#' },
-        { name: 'Privacy Policy', href: '#' },
+        { name: 'Privacy Policy', href: '/privacy-policy' },
+        { name: 'Terms of Service', href: '/terms-of-service' },
+        { name: 'Refund Policy', href: '/refund-policy' },
       ],
     },
   ];
@@ -83,21 +85,21 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              {socialLinks.map((social, index) => (
+              {socialLinks.map((link, index) => (
                 <motion.a
-                  key={social.label}
-                  href={social.href}
+                  key={link.label}
+                  href={link.href}
                   target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-ski-accent transition-all duration-300"
-                  aria-label={social.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <social.icon size={18} />
+                  <link.icon className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-200" />
                 </motion.a>
               ))}
             </motion.div>
@@ -105,31 +107,30 @@ const Footer: React.FC = () => {
 
           {/* Links Sections */}
           {footerLinks.map((section, sectionIndex) => (
-            <motion.div 
+            <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + sectionIndex * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.4 + sectionIndex * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">
-                {section.title}
-              </h3>
+              <h3 className="text-lg font-semibold mb-4 text-white">{section.title}</h3>
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
-                  <li key={link.name}>
-                    <motion.a
+                  <motion.li
+                    key={link.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 + sectionIndex * 0.1 + linkIndex * 0.05 }}
+                    viewport={{ once: true }}
+                  >
+                    <a
                       href={link.href}
-                      whileHover={{ x: 5 }}
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 + sectionIndex * 0.1 + linkIndex * 0.05 }}
-                      viewport={{ once: true }}
+                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                     >
                       {link.name}
-                    </motion.a>
-                  </li>
+                    </a>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
@@ -137,42 +138,16 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Section */}
-        <motion.div 
-          className="border-t border-gray-800 pt-8"
+        <motion.div
+          className="border-t border-gray-800 pt-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
-              © 2024 SKI Agency. All rights reserved.
-            </p>
-            
-            <div className="flex gap-6 text-sm">
-              <motion.a
-                href="#"
-                whileHover={{ y: -2 }}
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                Terms of Service
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ y: -2 }}
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                Privacy Policy
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ y: -2 }}
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                Cookie Policy
-              </motion.a>
-            </div>
-          </div>
+          <p className="text-gray-400 text-sm">
+            © 2024 SKI Creative Lab. All rights reserved. | Warangal, India
+          </p>
         </motion.div>
       </div>
     </footer>

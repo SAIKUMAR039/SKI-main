@@ -6,6 +6,9 @@ import ScrollIndicator from './components/ScrollIndicator';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import GraphicDesignPage from './pages/GraphicDesignPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import RefundPolicy from './pages/RefundPolicy';
 
 function App() {
   const location = useLocation();
@@ -77,6 +80,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/graphic-design" element={<GraphicDesignPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
       </Routes>
       
       <Footer />
