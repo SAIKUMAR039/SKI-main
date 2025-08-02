@@ -41,11 +41,11 @@ const About: React.FC = () => {
   const founders = [
     {
       name: 'Syed Imran',
-      role: 'Founder',
-      title: 'Graphic Designer & Marketing Head',
-      description: 'Manages all marketing strategies and financial operations of the company. With expertise in graphic design and business development, Syed leads our creative vision and ensures sustainable growth.',
-      specialties: ['Graphic Design', 'Marketing Strategy', 'Financial Management', 'Brand Development'],
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
+      role: 'FOUNDER',
+      title: 'Company & Marketing Head',
+      description: 'Manages all marketing strategies and financial operations of the company. With expertise in Business development, Syed leads our creative vision and ensures sustainable growth with overpowered solutions that ensures success of our company.',
+      specialties: ['Full Stack', 'Data analyst', 'Machine Learning', 'Marketing Strategy', 'Financial Management', 'Brand Development'],
+      image: '/Imran.png',
       icon: Palette,
       gradient: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50',

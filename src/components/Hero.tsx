@@ -36,18 +36,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            {/* Logo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-              className="flex justify-center mb-8"
-            >
-              <img 
-                src="/logo.svg" 
-                alt="SKI Logo"
-                className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 hover:cursor-pointer transition-transform duration-300"
-              />
-            </motion.div>
+           
 
             {/* Title */}
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 tracking-tight">

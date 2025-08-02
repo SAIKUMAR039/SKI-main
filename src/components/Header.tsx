@@ -1,220 +1,180 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-const Header: React.FC = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/#about' },
-    { name: 'Services', href: '/#services' },
-    { name: 'Work', href: '/#work' },
-    { name: 'Gallery', href: '/graphic-design' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '/', index: '01' },
+    { name: 'About', href: '/#about', index: '02' },
+    { name: 'Services', href: '/#services', index: '03' },
+    { name: 'Work', href: '/#work', index: '04' },
+    { name: 'Gallery', href: '/graphic-design', index: '05' },
+    { name: 'Contact', href: '/contact', index: '06' },
   ];
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
-    
-    if (href.startsWith('/#')) {
-      // If we're not on home page, navigate to home first
-      if (location.pathname !== '/') {
-        navigate('/');
-        // Wait for navigation to complete, then scroll
-        setTimeout(() => {
-          const sectionId = href.substring(2);
-          const element = document.getElementById(sectionId);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
-      } else {
-        // We're already on home page, just scroll
-        const sectionId = href.substring(2);
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    } else {
-      // Regular navigation
-      navigate(href);
-    }
+    console.log(`Navigating to: ${href}`);
   };
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      {/* Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out rounded-b-3xl ${
           isScrolled 
-            ? 'bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl shadow-black/5' 
-            : 'bg-transparent'
+            ? 'bg-white/15 backdrop-blur-xl border-b border-gray-100 shadow-sm' 
+            : 'bg-white/15 backdrop-blur-sm'
         }`}
-        style={{
-          borderBottomLeftRadius: isScrolled ? '32px' : '0px',
-          borderBottomRightRadius: isScrolled ? '32px' : '0px',
-          borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
-          backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none',
-          WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none',
-        }}
       >
-        {/* Glass reflection effect */}
-        {isScrolled && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none"
-            style={{
-              borderBottomLeftRadius: '32px',
-              borderBottomRightRadius: '32px',
-            }}
-          />
-        )}
-
-        <div className="max-w-8xl mx-auto px-6 lg:px-8 relative z-10">
-          <div className="flex items-center justify-between h-20">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-            <a href="/">
-                <img 
-                  src="/full_logo.png"
-                  alt="SKI Logo" 
-                  className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 xl:h-32 xl:w-32 hover:cursor-pointer transition-all duration-300 hover:drop-shadow-lg" 
-                />
-              </a>             
-            </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            
+            {/* Logo */}
+            <div className="flex items-center">
+              <div 
+                className="group cursor-pointer"
+                onClick={() => handleNavClick('/')}
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 lg:w-12 lg:h-12  rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                   <img src="/full_logo.png" alt="logo" />
+                  </div>
+                  <div className="hidden sm:block">
+                    <span className="text-ski-black font-bold text-xl lg:text-2xl tracking-tight font-inter">
+                      SKI
+                    </span>
+                    <div className="text-gray-500 text-xs tracking-wider uppercase font-inter">
+                      Studio
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              {navItems.map((item, index) => (
-                <motion.button
+            <nav className="hidden lg:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <a href={item.href} key={item.name}>
+                <button
                   key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  whileHover={{ y: -2, scale: 1.05 }}
-                  className={`font-medium relative group transition-all duration-300 ${
-                    isScrolled 
-                      ? 'text-ski-black/90 hover:text-ski-accent' 
-                      : 'text-ski-black hover:text-ski-accent'
-                  }`}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                 
+                  className="group relative text-ski-black transition-all duration-300 font-inter focus:outline-none focus:ring-0"
                 >
-                  {item.name}
-                  {/* Glass-like underline on hover */}
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-ski-accent to-orange-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 shadow-lg"
-                    style={{
-                      borderRadius: '2px',
-                      filter: 'drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3))',
-                    }}
-                  />
-                </motion.button>
+                  <span className="relative z-10 text-sm font-medium tracking-wide">
+                    {item.name}
+                  </span>
+                   
+                  {/* Hover underline */}
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-ski-accent group-hover:w-full transition-all duration-300" />
+                </button>
+                </a>
               ))}
             </nav>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`md:hidden p-3 rounded-2xl transition-all duration-300 ${
-                isScrolled 
-                  ? 'bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 shadow-lg' 
-                  : 'hover:bg-gray-100/80 backdrop-blur-sm'
-              }`}
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-              style={{
-                backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-                WebkitBackdropFilter: isScrolled ? 'blur(10px)' : 'none',
-              }}
-            >
-              <motion.div
-                animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
+            {/* CTA Button - Desktop */}
+            <div className="hidden lg:flex items-center">
+              <button 
+                onClick={() => handleNavClick('/contact')}
+                className="group relative bg-ski-accent text-white px-8 py-3 rounded-full font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-105 font-inter focus:outline-none focus:ring-0"
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.div>
-            </motion.button>
+                <span className="flex items-center space-x-2">
+                  <span>Let's Talk</span>
+                  <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                </span>
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden relative p-2 text-ski-black hover:text-ski-accent transition-colors duration-300 focus:outline-none focus:ring-0"
+            >
+              <div className="w-6 h-6 flex items-center justify-center">
+                {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </div>
+            </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed top-24 left-4 right-4 z-40 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/10"
-            style={{
-              borderRadius: '24px',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            }}
-          >
-            {/* Glass reflection effect for mobile menu */}
-            <div 
-              className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none"
-              style={{ borderRadius: '24px' }}
-            />
-            
-            <div className="px-6 py-6 space-y-2 relative z-10">
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left text-ski-black/90 hover:text-ski-accent transition-all duration-300 font-medium py-3 px-4 rounded-2xl hover:bg-white/20 backdrop-blur-sm border border-transparent hover:border-white/30"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ x: 8, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  style={{
-                    backdropFilter: 'blur(10px)',
-                    WebkitBackdropFilter: 'blur(10px)',
-                  }}
-                >
-                  <motion.div
-                    className="flex items-center gap-3"
-                    whileHover={{ gap: '16px' }}
-                    transition={{ duration: 0.2 }}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-ski-black/20 backdrop-blur-sm"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          
+          {/* Menu Panel */}
+          <div className="absolute top-16 left-4 right-4 bg-white border border-gray-100 rounded-2xl shadow-2xl">
+            <div className="p-6">
+              
+             
+
+              {/* Navigation Links */}
+              <div className="space-y-2 mb-8">
+                {navItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item.href)}
+                    className="group w-full flex items-center justify-between p-4 text-left text-ski-black hover:text-ski-accent hover:bg-ski-gray rounded-xl transition-all duration-300 focus:outline-none focus:ring-0"
                   >
-                    <div className="w-2 h-2 bg-ski-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {item.name}
-                  </motion.div>
-                </motion.button>
-              ))}
+                    <div className="flex items-center space-x-4">
+                       
+                      <span className="font-medium font-inter text-base">
+                        {item.name}
+                      </span>
+                    </div>
+                    <ArrowUpRight 
+                      size={18} 
+                      className="text-gray-400 group-hover:text-ski-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              {/* Mobile CTA */}
+              <div className="pt-6 border-t border-gray-100">
+                <button 
+                  onClick={() => handleNavClick('/contact')}
+                  className="w-full bg-ski-accent text-white py-4 rounded-xl font-medium text-center transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-[1.02] font-inter focus:outline-none focus:ring-0"
+                >
+                  Start a Project
+                </button>
+                
+                {/* Contact Info */}
+                <div className="mt-4 text-center">
+                  <p className="text-gray-500 text-sm font-inter">
+                    Ready to create something amazing?
+                  </p>
+                </div>
+              </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Contact Button - Mobile Only */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-30">
+        <button
+          onClick={() => handleNavClick('/contact')}
+          className="bg-ski-accent text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse-glow focus:outline-none focus:ring-0"
+        >
+          <ArrowUpRight size={20} />
+        </button>
+      </div>
     </>
   );
 };
