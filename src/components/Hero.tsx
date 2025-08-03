@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
   const typewriterWords: string[] = [' EXCELLENCE',  ' CREATIVITY', ' INNOVATION', ' AI DRIVEN'];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 ">
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0">
         <Aurora
@@ -39,16 +39,16 @@ const Hero: React.FC = () => {
            
 
             {/* Title */}
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 tracking-tight">
+            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 tracking-tight">
               <WaveText 
                 text="SPARK" 
                 className="block text-ski-black justify-center mb-2"
                 delay={0.2}
               />
-              <div className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black my-4">
+              <div className="block text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black my-4">
                 <GradientText 
                   text="KNACK" 
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black"
+                  className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black"
                   gradient="from-ski-accent via-orange-500 to-red-500"
                 />
               </div>

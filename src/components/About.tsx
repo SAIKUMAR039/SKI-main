@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useParallax } from '../hooks/useParallax';
-import { Target, Zap, Rocket, User, Code, TrendingUp, Palette } from 'lucide-react';
+import { Target, Zap, Rocket, User, Code, TrendingUp, Palette, Linkedin, Globe } from 'lucide-react';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -49,10 +49,12 @@ const About: React.FC = () => {
       icon: Palette,
       gradient: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50',
+      linkedin: 'https://www.linkedin.com/in/syed-imran-0000000000000000000000000000000000000000/',
+      portfolio: 'https://syedimran.dev/',
     },
     {
       name: 'Sai Kumar Thota',
-      role: 'Co-Founder',
+      role: 'Co-ounder',
       title: 'Web Developer & Tech Lead',
       description: 'Handles all web development and technology operations with an impressive portfolio in modern web technologies. Sai manages every aspect of our online presence and technical infrastructure.',
       specialties: ['Web Development', 'Full-Stack Development', 'Tech Management', 'Digital Solutions'],
@@ -60,6 +62,8 @@ const About: React.FC = () => {
       icon: Code,
       gradient: 'from-blue-500 to-cyan-500',
       bgGradient: 'from-blue-50 to-cyan-50',
+      linkedin: 'https://www.linkedin.com/in/sai-kumar-thota-101764252/',
+      portfolio: 'https://www.saikumarthota.live/',
     },
   ];
 
@@ -261,6 +265,7 @@ const About: React.FC = () => {
                             <div className={`absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                           </div>
                           
+
                           {/* Floating Icon Badge */}
                           <motion.div
                             whileHover={{ scale: 1.2, rotate: 10 }}
@@ -320,6 +325,46 @@ const About: React.FC = () => {
                       </div>
                     </div>
 
+                    {/* Social Links */}
+                    <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-100">
+                      {founder.linkedin && (
+                        <motion.a
+                          href={founder.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/link"
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full opacity-0 group-hover/link:opacity-100 transition-all duration-300 blur-sm" />
+                            <div className="relative flex items-center justify-center w-12 h-12 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-blue-500">
+                              <Linkedin className="w-5 h-5 text-gray-600 group-hover/link:text-blue-600 transition-colors duration-300" />
+                            </div>
+                          </div>
+                        </motion.a>
+                      )}
+                      
+                      {founder.portfolio && (
+                        <motion.a
+                          href={founder.portfolio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/link"
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-ski-accent to-orange-500 rounded-full opacity-0 group-hover/link:opacity-100 transition-all duration-300 blur-sm" />
+                            <div className="relative flex items-center justify-center w-12 h-12 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-ski-accent">
+                              <Globe className="w-5 h-5 text-gray-600 group-hover/link:text-ski-accent transition-colors duration-300" />
+                            </div>
+                          </div>
+                        </motion.a>
+                      )}
+                    </div>
 
 
                   </div>

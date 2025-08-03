@@ -31,7 +31,7 @@ const Header = () => {
     <>
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out rounded-b-3xl ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out rounded-b-3xl border-r-2 border-l-2   pt-4  ${
           isScrolled 
             ? 'bg-white/15 backdrop-blur-xl border-b border-gray-100 shadow-sm' 
             : 'bg-white/15 backdrop-blur-sm'
@@ -84,6 +84,7 @@ const Header = () => {
 
             {/* CTA Button - Desktop */}
             <div className="hidden lg:flex items-center">
+              <a href="/contact">
               <button 
                 onClick={() => handleNavClick('/contact')}
                 className="group relative bg-ski-accent text-white px-8 py-3 rounded-full font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-105 font-inter focus:outline-none focus:ring-0"
@@ -93,6 +94,7 @@ const Header = () => {
                   <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                 </span>
               </button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
