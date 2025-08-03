@@ -54,7 +54,7 @@ const About: React.FC = () => {
     },
     {
       name: 'Sai Kumar Thota',
-      role: 'Co-Founder',
+      role: 'CO-FOUNDER',
       title: 'Web Developer & Tech Lead',
       description: 'Handles all web development and technology operations with an impressive portfolio in modern web technologies. Sai manages every aspect of our online presence and technical infrastructure.',
       specialties: ['Web Development', 'Full-Stack Development', 'Tech Management', 'Digital Solutions'],
