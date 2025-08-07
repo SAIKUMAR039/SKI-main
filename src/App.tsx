@@ -77,7 +77,7 @@ function App() {
       <Header />
       
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/graphic-design" element={<GraphicDesignPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

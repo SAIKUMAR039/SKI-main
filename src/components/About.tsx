@@ -49,8 +49,7 @@ const About: React.FC = () => {
       icon: UserRound,
       gradient: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50',
-      linkedin: 'https://www.linkedin.com/in/syed-imran-0000000000000000000000000000000000000000/',
-      portfolio: 'https://syedimran.dev/',
+    
     },
     {
       name: 'Sai Kumar Thota',
@@ -62,21 +61,18 @@ const About: React.FC = () => {
       icon: Code,
       gradient: 'from-blue-500 to-cyan-500',
       bgGradient: 'from-blue-50 to-cyan-50',
-      linkedin: 'https://www.linkedin.com/in/sai-kumar-thota-101764252/',
-      portfolio: 'https://www.saikumarthota.live/',
+  
     },
     {
       name: 'Malayala Sai Chandra',
-      role: 'Marketing and Operations Head',
-      title: 'Marketing and Operations Head',
-      description: 'Manages all marketing strategies and financial operations of the company. With expertise in Business development, Syed leads our creative vision and ensures sustainable growth with overpowered solutions that ensures success of our company.',
+      role: 'Teach & Operations',
+      title: 'Tech & Operations',
+      description: 'Sai Chandra oversees all aspects of technology and operations within the company, ensuring seamless integration of innovative solutions with efficient execution. With a strong focus on digital transformation, Sai leverages cutting-edge technologies to drive scalability, optimize workflows, and enhance operational resilience. ',
       specialties: ['Full stack developer', 'Operations Manager', 'Business Development', 'Brand Development'],
       image: '/sai_chandra.JPG',
       icon: UserRound,
-      gradient: ' from-orange-500 to-yellow-500',
+            gradient: 'from-orange-500 to-yellow-500',
       bgGradient: 'from-orange-50 to-yellow-50',
-      linkedin: 'https://www.linkedin.com/in/sai-kumar-thota-101764252/',
-      portfolio: 'https://www.saikumarthota.live/',
     },
   ];
 
@@ -339,45 +335,7 @@ const About: React.FC = () => {
                     </div>
 
                     {/* Social Links */}
-                    <div className="flex items-center justify-center gap-3 pt-4 border-t border-gray-100">
-                      {founder.linkedin && (
-                        <motion.a
-                          href={founder.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/link"
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full opacity-0 group-hover/link:opacity-100 transition-all duration-300 blur-sm" />
-                            <div className="relative flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-blue-500">
-                              <Linkedin className="w-4 h-4 text-gray-600 group-hover/link:text-blue-600 transition-colors duration-300" />
-                            </div>
-                          </div>
-                        </motion.a>
-                      )}
-                      
-                      {founder.portfolio && (
-                        <motion.a
-                          href={founder.portfolio}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/link"
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-ski-accent to-orange-500 rounded-full opacity-0 group-hover/link:opacity-100 transition-all duration-300 blur-sm" />
-                            <div className="relative flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-ski-accent">
-                              <Globe className="w-4 h-4 text-gray-600 group-hover/link:text-ski-accent transition-colors duration-300" />
-                            </div>
-                          </div>
-                        </motion.a>
-                      )}
-                    </div>
+                    
 
 
                   </div>

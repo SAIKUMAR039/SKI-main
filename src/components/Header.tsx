@@ -16,7 +16,7 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/', index: '01' },
+    { name: 'Home', href: '/#home', index: '01' },
     { name: 'About', href: '/#about', index: '02' },
     { name: 'Services', href: '/#services', index: '03' },
     { name: 'Work', href: '/#work', index: '04' },
@@ -30,7 +30,7 @@ const Header = () => {
     // Handle hash links (anchor links)
     if (href.includes('#')) {
       const [path, hash] = href.split('#');
-      if (path === '/' || path === '') {
+      if (path === '/' ) {
         // If we're already on the home page, just scroll to the section
         const element = document.getElementById(hash);
         if (element) {
@@ -80,7 +80,7 @@ const Header = () => {
                       SKI
                     </span>
                     <div className="text-gray-500 text-xs tracking-wider uppercase font-inter">
-                      Studio
+                      Creative & Tech Solutions
                     </div>
                   </div>
                 </div>
