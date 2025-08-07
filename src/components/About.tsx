@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useParallax } from '../hooks/useParallax';
-import { Target, Zap, Rocket, User, Code, TrendingUp, Palette, Linkedin, Globe } from 'lucide-react';
+import { Target, Zap, Rocket, User, Code, TrendingUp, Linkedin, Globe, UserRound } from 'lucide-react';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -46,7 +46,7 @@ const About: React.FC = () => {
       description: 'Manages all marketing strategies and financial operations of the company. With expertise in Business development, Syed leads our creative vision and ensures sustainable growth with overpowered solutions that ensures success of our company.',
       specialties: ['Full Stack', 'Data analyst', 'Machine Learning', 'Marketing Strategy', 'Financial Management', 'Brand Development'],
       image: '/Imran.png',
-      icon: Palette,
+      icon: UserRound,
       gradient: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50',
       linkedin: 'https://www.linkedin.com/in/syed-imran-0000000000000000000000000000000000000000/',
@@ -57,11 +57,24 @@ const About: React.FC = () => {
       role: 'CO-FOUNDER',
       title: 'Web Developer & Tech Lead',
       description: 'Handles all web development and technology operations with an impressive portfolio in modern web technologies. Sai manages every aspect of our online presence and technical infrastructure.',
-      specialties: ['Web Development', 'Full-Stack Development', 'Tech Management', 'Digital Solutions'],
+      specialties: ['Web Development', 'Full-Stack Development', 'Tech Management', 'Digital Solutions','Meta Ads', 'Google Ads','Social Media Management'],
       image: '/Sai.jpg',
       icon: Code,
       gradient: 'from-blue-500 to-cyan-500',
       bgGradient: 'from-blue-50 to-cyan-50',
+      linkedin: 'https://www.linkedin.com/in/sai-kumar-thota-101764252/',
+      portfolio: 'https://www.saikumarthota.live/',
+    },
+    {
+      name: 'Malayala Sai Chandra',
+      role: 'Marketing and Operations Head',
+      title: 'Marketing and Operations Head',
+      description: 'Manages all marketing strategies and financial operations of the company. With expertise in Business development, Syed leads our creative vision and ensures sustainable growth with overpowered solutions that ensures success of our company.',
+      specialties: ['Full stack developer', 'Operations Manager', 'Business Development', 'Brand Development'],
+      image: '/sai_chandra.JPG',
+      icon: UserRound,
+      gradient: ' from-orange-500 to-yellow-500',
+      bgGradient: 'from-orange-50 to-yellow-50',
       linkedin: 'https://www.linkedin.com/in/sai-kumar-thota-101764252/',
       portfolio: 'https://www.saikumarthota.live/',
     },
@@ -71,7 +84,7 @@ const About: React.FC = () => {
     <section id="about" className="py-32 bg-ski-gray relative overflow-hidden">
       {/* Parallax Background Pattern */}
       <div 
-        ref={parallaxRef}
+        ref={parallaxRef as React.RefObject<HTMLDivElement>}
         className="absolute inset-0 opacity-5"
       >
         <div className="absolute inset-0" style={{
@@ -221,7 +234,7 @@ const About: React.FC = () => {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             {founders.map((founder, index) => (
               <motion.div
                 key={founder.name}
@@ -230,7 +243,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.6, delay: 1.2 + index * 0.2 }}
                 className="group"
               >
-                <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
+                <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 lg:p-8 border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
                   {/* Background Gradient */}
                   <motion.div
                     className={`absolute inset-0 bg-gradient-to-br ${founder.bgGradient} opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl`}
@@ -254,7 +267,7 @@ const About: React.FC = () => {
                           </div>
                           
                           {/* Profile Image */}
-                          <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                          <div className="relative w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                             <img
                               src={founder.image}
                               alt={founder.name}
@@ -270,9 +283,9 @@ const About: React.FC = () => {
                           <motion.div
                             whileHover={{ scale: 1.2, rotate: 10 }}
                             transition={{ duration: 0.3 }}
-                            className={`absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-r ${founder.gradient} rounded-full flex items-center justify-center shadow-lg border-3 border-white`}
+                            className={`absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r ${founder.gradient} rounded-full flex items-center justify-center shadow-lg border-3 border-white`}
                           >
-                            <founder.icon className="w-6 h-6 text-white" />
+                            <founder.icon className="w-5 h-5 text-white" />
                           </motion.div>
                         </motion.div>
                         
@@ -293,13 +306,13 @@ const About: React.FC = () => {
 
                     {/* Name and Title */}
                     <div className="mb-6">
-                      <h4 className="text-2xl lg:text-3xl font-bold text-ski-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
+                      <h4 className="text-xl lg:text-2xl font-bold text-ski-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
                         {founder.name}
                       </h4>
-                      <p className="text-lg font-semibold text-ski-accent mb-4">
+                      <p className="text-base font-semibold text-ski-accent mb-4">
                         {founder.title}
                       </p>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 text-sm">
                         {founder.description}
                       </p>
                     </div>
@@ -326,7 +339,7 @@ const About: React.FC = () => {
                     </div>
 
                     {/* Social Links */}
-                    <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-center gap-3 pt-4 border-t border-gray-100">
                       {founder.linkedin && (
                         <motion.a
                           href={founder.linkedin}
@@ -339,8 +352,8 @@ const About: React.FC = () => {
                         >
                           <div className="relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full opacity-0 group-hover/link:opacity-100 transition-all duration-300 blur-sm" />
-                            <div className="relative flex items-center justify-center w-12 h-12 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-blue-500">
-                              <Linkedin className="w-5 h-5 text-gray-600 group-hover/link:text-blue-600 transition-colors duration-300" />
+                            <div className="relative flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-blue-500">
+                              <Linkedin className="w-4 h-4 text-gray-600 group-hover/link:text-blue-600 transition-colors duration-300" />
                             </div>
                           </div>
                         </motion.a>
@@ -358,8 +371,8 @@ const About: React.FC = () => {
                         >
                           <div className="relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-ski-accent to-orange-500 rounded-full opacity-0 group-hover/link:opacity-100 transition-all duration-300 blur-sm" />
-                            <div className="relative flex items-center justify-center w-12 h-12 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-ski-accent">
-                              <Globe className="w-5 h-5 text-gray-600 group-hover/link:text-ski-accent transition-colors duration-300" />
+                            <div className="relative flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-200 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 group-hover/link:border-ski-accent">
+                              <Globe className="w-4 h-4 text-gray-600 group-hover/link:text-ski-accent transition-colors duration-300" />
                             </div>
                           </div>
                         </motion.a>
