@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +26,30 @@ const Header = () => {
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
-    console.log(`Navigating to: ${href}`);
+    
+    // Handle hash links (anchor links)
+    if (href.includes('#')) {
+      const [path, hash] = href.split('#');
+      if (path === '/' || path === '') {
+        // If we're already on the home page, just scroll to the section
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Navigate to the page first, then scroll to section
+        navigate(path);
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    } else {
+      // Regular navigation
+      navigate(href);
+    }
   };
 
   return (
@@ -65,10 +90,9 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
-                <a href={item.href} key={item.name}>
                 <button
                   key={item.name}
-                 
+                  onClick={() => handleNavClick(item.href)}
                   className="group relative text-ski-black transition-all duration-300 font-inter focus:outline-none focus:ring-0"
                 >
                   <span className="relative z-10 text-sm font-medium tracking-wide">
@@ -78,13 +102,11 @@ const Header = () => {
                   {/* Hover underline */}
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-ski-accent group-hover:w-full transition-all duration-300" />
                 </button>
-                </a>
               ))}
             </nav>
 
             {/* CTA Button - Desktop */}
             <div className="hidden lg:flex items-center">
-              <a href="/contact">
               <button 
                 onClick={() => handleNavClick('/contact')}
                 className="group relative bg-ski-accent text-white px-8 py-3 rounded-full font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-105 font-inter focus:outline-none focus:ring-0"
@@ -94,7 +116,6 @@ const Header = () => {
                   <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                 </span>
               </button>
-              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -153,7 +174,7 @@ const Header = () => {
                   onClick={() => handleNavClick('/contact')}
                   className="w-full bg-ski-accent text-white py-4 rounded-xl font-medium text-center transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-[1.02] font-inter focus:outline-none focus:ring-0"
                 >
-                  Start a Project
+                  Let's Talk
                 </button>
                 
                 {/* Contact Info */}
@@ -174,7 +195,7 @@ const Header = () => {
           onClick={() => handleNavClick('/contact')}
           className="bg-ski-accent text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse-glow focus:outline-none focus:ring-0"
         >
-          <ArrowUpRight size={20} />
+          <ArrowUpRight size={20} className="text-white" />
         </button>
       </div>
     </>
