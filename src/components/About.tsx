@@ -26,7 +26,7 @@ const About: React.FC = () => {
     },
     {
       icon: Rocket,
-      title: 'INSPIRE',
+      title: 'IGNITE',
       description: 'We deliver transformative results that empower our clients to lead in their industries and inspire lasting change.',
     },
   ];
@@ -121,7 +121,7 @@ const About: React.FC = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              SKI – Spark, Knack, Inspire. Our mission is to ignite bold ideas, apply deep expertise, and deliver transformative results that empower our clients to lead in their industries.
+              SKI – Spark, Knack, Ignite. Our mission is to ignite bold ideas, apply deep expertise, and deliver transformative results that empower our clients to lead in their industries.
             </motion.p>
           </div>
         </motion.div>
