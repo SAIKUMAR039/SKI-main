@@ -56,7 +56,7 @@ const Header = () => {
     <>
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out rounded-b-3xl border-r-2 border-l-2   pt-4  ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out rounded-b-3xl border-r-2 border-l-2   pt-4 rounded-b-3xl  ${
           isScrolled 
             ? 'bg-white/15 backdrop-blur-xl border-b border-gray-100 shadow-sm' 
             : 'bg-white/15 backdrop-blur-sm'
@@ -72,7 +72,7 @@ const Header = () => {
                 onClick={() => handleNavClick('/')}
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 lg:w-12 lg:h-12  rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                  <div className="w-12 h-12 lg:w-12 lg:h-12  rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                    <img src="/full_logo.png" alt="logo" />
                   </div>
                   <div className="hidden sm:block">

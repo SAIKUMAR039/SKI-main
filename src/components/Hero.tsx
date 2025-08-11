@@ -39,16 +39,16 @@ const Hero: React.FC = () => {
            
 
             {/* Title */}
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 tracking-tight">
+            <div className="text-5xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 tracking-tight">
               <WaveText 
                 text="SPARK" 
                 className="block text-ski-black justify-center mb-2"
                 delay={0.2}
               />
-              <div className="block text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black my-4">
+              <div className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black my-4">
                 <GradientText 
                   text="KNACK" 
-                  className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black"
                   gradient="from-ski-accent via-orange-500 to-red-500"
                 />
               </div>
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Responsive Subtitle */}
-            <div className="text-sm sm:text-lg px-4 md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-700 mb-6 px-4 text-center sm:text-left sm:justify-center sm:items-center sm:flex w-full">
+            <div className="text-base sm:text-lg px-4 md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-700 mb-6 px-4 text-center sm:text-left sm:justify-center sm:items-center sm:flex w-full">
               We create digital experiences with{' '}
               {/* Mobile: show rotating text */}
               <span className="inline font-bold text-ski-accent align-middle sm:hidden justify-center items-center flex w-full">
@@ -104,7 +104,7 @@ const Hero: React.FC = () => {
           >
             <TextReveal
               text="A creative and AI-driven agency helping brands grow through smart design, innovation, and data-backed strategies."
-              className="text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed font-light"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed font-light"
               delay={1.8}
               duration={0.5}
             />
@@ -121,7 +121,7 @@ const Hero: React.FC = () => {
               onClick={() => navigate('/contact')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-ski-black text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium flex items-center gap-2 transition-all duration-300 hover:bg-ski-accent hover:shadow-lg group relative overflow-hidden text-xs sm:text-base"
+              className="bg-ski-black text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium flex items-center gap-2 transition-all duration-300 hover:bg-ski-accent hover:shadow-lg group relative overflow-hidden text-sm sm:text-base"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-ski-accent to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -140,7 +140,7 @@ const Hero: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-ski-black text-ski-black px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-ski-black hover:text-white transition-all duration-300 flex items-center gap-2 group relative overflow-hidden text-xs sm:text-base"
+                className="border-2 border-ski-black text-ski-black px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-ski-black hover:text-white transition-all duration-300 flex items-center gap-2 group relative overflow-hidden text-sm sm:text-base"
               >
                 <motion.div
                   className="absolute inset-0 bg-ski-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
