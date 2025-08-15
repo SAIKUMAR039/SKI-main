@@ -20,30 +20,30 @@ const FeaturedGraphicDesign: React.FC = () => {
     {
       id: 1,
       title: 'Naveen Reddy',
-      src: '/media/NaveenReddy.png',
-      height: 'h-64',
+      src: '/media/NR.png',
+      height: 'h-48',
       category: 'Portrait Design'
     },
     {
       id: 2,
-      title: 'Naveen Reddy Poster',
-      src: '/media/NaveenReddyPoster.png',
-      height: 'h-80',
+      title: 'SKI Poster',
+      src: '/media/SKI.png',
+      height: 'h-64',
       category: 'Poster Design'
     },
     {
       id: 5,
       title: 'Vynika Reddy',
       src: '/media/VR.png',
-      height: 'h-80',
+      height: 'h-64',
       category: 'Portrait Design'
     },
     {
       id: 6,
-      title: 'Vynika Reddy Collection',
-      src: '/media/VR1.png',
-      height: 'h-64',
-      category: 'Portrait Series'
+      title: 'BS Infra Developers',
+      src: '/media/BS1.png',
+      height: 'h-80',
+      category: 'Poster Design'
     }
   ];
 

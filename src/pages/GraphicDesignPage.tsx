@@ -41,13 +41,7 @@ const GraphicDesignPage: React.FC = () => {
       src: '/media/NaveenReddyPoster.png',
       height: 'h-80',
     },
-    {
-      id: 3,
-      title: 'Naveen Reddy',
-      type: 'image',
-      src: '/media/NaveenReddyPoster2.png',
-      height: 'h-80',
-    },
+   
     {
       id: 4,
       title: 'Naveen Reddy',
@@ -88,6 +82,27 @@ const GraphicDesignPage: React.FC = () => {
       title: 'Vynika Reddy',
       type: 'image',
       src: '/media/VR4.png',
+      height: 'h-80',
+    },
+    {
+      id: 10,
+      title: 'SKI Poster',
+      type: 'image',
+      src: '/media/SKI.png',
+      height: 'h-80',
+    },
+    {
+      id: 11,
+      title: 'BS Infra Developers',
+      type: 'image',
+      src: '/media/BS1.png',
+      height: 'h-80',
+    },
+    {
+      id: 12,
+      title: 'Naveen Reddy Poster',
+      type: 'image',
+      src: '/media/NR.png',
       height: 'h-80',
     },
   ];
