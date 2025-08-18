@@ -19,6 +19,22 @@ const Portfolio: React.FC = () => {
  
     const projects = [
       {
+        title: 'Vynika Reddy Studio E-Commerce',
+        category: 'Web Development',
+        description: 'A powerful AI-powered content generation platform that offers specialized tools for various content creation needs - from code analysis to professional writing.',
+        image: '/vynika.png',
+        link: 'https://vynika-reddy.saikumarthota.live/',
+        tags: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Gemini API', 'Stripe', 'Vite'],
+        metrics: [
+          { label: 'Year', value: '2025', icon: Award },
+          { label: 'GitHub', value: 'Repo', icon: ExternalLink },
+          { label: 'Live Demo', value: 'Demo', icon: TrendingUp },
+        ],
+        featured: false,
+        isVideo: false,
+      },
+
+      {
         title: 'Nerdy AI Studio',
         category: 'Web Development',
         description: 'A powerful AI-powered content generation platform that offers specialized tools for various content creation needs - from code analysis to professional writing.',
