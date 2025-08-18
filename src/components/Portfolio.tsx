@@ -34,21 +34,7 @@ const Portfolio: React.FC = () => {
         isVideo: false,
       },
 
-      {
-        title: 'Nerdy AI Studio',
-        category: 'Web Development',
-        description: 'A powerful AI-powered content generation platform that offers specialized tools for various content creation needs - from code analysis to professional writing.',
-        image: '/nerdyn.png',
-        link: 'https://nerdyn.saikumarthota.live/',
-        tags: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Gemini API', 'Stripe', 'Vite'],
-        metrics: [
-          { label: 'Year', value: '2025', icon: Award },
-          { label: 'GitHub', value: 'Repo', icon: ExternalLink },
-          { label: 'Live Demo', value: 'Demo', icon: TrendingUp },
-        ],
-        featured: false,
-        isVideo: false,
-      },
+      
       {
         title: 'Imagine',
         category: 'Web Development',
