@@ -1,51 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-interface FeaturedWork {
-  id: number;
-  title: string;
-  src: string;
-  height: string;
-  category: string;
-}
+import { supabase, DesignWork } from '../lib/supabase';
 
 const FeaturedGraphicDesign: React.FC = () => {
   const navigate = useNavigate();
   const [imageLoading, setImageLoading] = useState<Set<number>>(new Set());
+  const [featuredWorks, setFeaturedWorks] = useState<DesignWork[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Featured graphic design works - a subset of your portfolio
-  const featuredWorks: FeaturedWork[] = [
-    {
-      id: 1,
-      title: 'Naveen Reddy',
-      src: '/media/NR.png',
-      height: 'h-48',
-      category: 'Portrait Design'
-    },
-    {
-      id: 2,
-      title: 'SKI Poster',
-      src: '/media/SKI.png',
-      height: 'h-64',
-      category: 'Poster Design'
-    },
-    {
-      id: 5,
-      title: 'Vynika Reddy',
-      src: '/media/VR.png',
-      height: 'h-64',
-      category: 'Portrait Design'
-    },
-    {
-      id: 6,
-      title: 'BS Infra Developers',
-      src: '/media/BS1.png',
-      height: 'h-80',
-      category: 'Poster Design'
-    }
-  ];
+  useEffect(() => {
+    const fetchFeaturedWorks = async () => {
+      try {
+        setLoading(true);
+        // Fetch only 4 featured works
+        const { data, error } = await supabase
+          .from('design_works')
+          .select('*')
+          .eq('featured', true)
+          .order('created_at', { ascending: false })
+          .limit(4);
+
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          setFeaturedWorks(data);
+        }
+      } catch (error) {
+        console.error('Error fetching featured works:', error);
+        setError('Failed to load featured works');
+        
+        // Fallback to static data if Supabase fails
+        setFeaturedWorks([
+          {
+            id: 1,
+            title: 'Naveen Reddy',
+            src: '/media/NR.png',
+            height: 'h-48',
+            category: 'Portrait Design',
+            type: 'image'
+          },
+          {
+            id: 2,
+            title: 'SKI Poster',
+            src: '/media/SKI.png',
+            height: 'h-64',
+            category: 'Poster Design',
+            type: 'image'
+          },
+          {
+            id: 5,
+            title: 'Vynika Reddy',
+            src: '/media/VR.png',
+            height: 'h-64',
+            category: 'Portrait Design',
+            type: 'image'
+          },
+          {
+            id: 6,
+            title: 'BS Infra Developers',
+            src: '/media/BS1.png',
+            height: 'h-80',
+            category: 'Poster Design',
+            type: 'image'
+          }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeaturedWorks();
+  }, []);
 
   const handleImageLoad = (id: number) => {
     setImageLoading(prev => {
@@ -119,9 +149,9 @@ const FeaturedGraphicDesign: React.FC = () => {
                     <div className={`w-full ${work.height} bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse`} />
                   )}
                   
-                  {/* Image */}
+                  {/* Image (uses thumbnail if available) */}
                   <motion.img
-                    src={work.src}
+                    src={work.thumbnail || work.src}
                     alt={work.title}
                     className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
                       imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
@@ -169,4 +199,4 @@ const FeaturedGraphicDesign: React.FC = () => {
   );
 };
 
-export default FeaturedGraphicDesign; 
+export default FeaturedGraphicDesign;

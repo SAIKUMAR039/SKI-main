@@ -1,123 +1,90 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Download, Heart, Eye, X, Play } from 'lucide-react';
+import { Download, Eye, X, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-interface DesignWork {
-  id: number;
-  title: string;
-  type: 'image' | 'video';
-  src: string;
-  thumbnail?: string;
-  height: string;
-}
+import { supabase, DesignWork } from '../lib/supabase';
 
 const GraphicDesignPage: React.FC = () => {
   const navigate = useNavigate();
-  const [likedImages, setLikedImages] = useState<Set<number>>(new Set());
   const [selectedWork, setSelectedWork] = useState<DesignWork | null>(null);
   const [imageLoading, setImageLoading] = useState<Set<number>>(new Set());
+  const [designWorks, setDesignWorks] = useState<DesignWork[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Sample graphic design data - replace with your actual images/videos
-  const designWorks: DesignWork[] = [
-    {
-      id: 1,
-      title: 'Naveen Reddy',
-      type: 'image',
-      src: '/media/NaveenReddy.png',
-      height: 'h-64',
-    },
-    {
-      id: 2,
-      title: 'Naveen Reddy',
-      type: 'video',
-      src: '/media/NaveenReddyAd.mp4',
-      height: 'h-80',
-    },
-    {
-      id: 2,
-      title: 'Naveen Reddy',
-      type: 'image',
-      src: '/media/NaveenReddyPoster.png',
-      height: 'h-80',
-    },
-   
-    {
-      id: 4,
-      title: 'Naveen Reddy',
-      type: 'image',
-      src: '/media/NaveenReddyPoster3.png',
-      height: 'h-80',
-    },
-    {
-      id: 5,
-      title: 'Vynika Reddy',
-      type: 'image',
-      src: '/media/VR.png',
-      height: 'h-80',
-    },
-    {
-      id: 6,
-      title: 'Vynika Reddy',
-      type: 'image',
-      src: '/media/VR1.png',
-      height: 'h-80',
-    },
-    {
-      id: 7,
-      title: 'Vynika Reddy',
-      type: 'image',
-      src: '/media/VR2.png',
-      height: 'h-80',
-    },
-    {
-      id: 8,
-      title: 'Vynika Reddy',
-      type: 'image',
-      src: '/media/VR3.png',
-      height: 'h-80',
-    },
-    {
-      id: 9,
-      title: 'Vynika Reddy',
-      type: 'image',
-      src: '/media/VR4.png',
-      height: 'h-80',
-    },
-    {
-      id: 10,
-      title: 'SKI Poster',
-      type: 'image',
-      src: '/media/SKI.png',
-      height: 'h-80',
-    },
-    {
-      id: 11,
-      title: 'BS Infra Developers',
-      type: 'image',
-      src: '/media/BS1.png',
-      height: 'h-80',
-    },
-    {
-      id: 12,
-      title: 'Naveen Reddy Poster',
-      type: 'image',
-      src: '/media/NR.png',
-      height: 'h-80',
-    },
-  ];
+  useEffect(() => {
+    const fetchDesignWorks = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('design_works')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-  const handleLike = (id: number) => {
-    setLikedImages(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          setDesignWorks(data);
+        }
+      } catch (error) {
+        console.error('Error fetching design works:', error);
+        setError('Failed to load design works. Please try again later.');
+      } finally {
+        setLoading(false);
       }
-      return newSet;
-    });
-  };
+    };
+
+    fetchDesignWorks();
+  }, []);
+  // Loading and error states
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-ski-accent"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="bg-red-50 p-6 rounded-lg shadow-sm">
+          <h3 className="text-red-800 font-medium text-lg">Error</h3>
+          <p className="text-red-700">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Placeholder for empty state
+  if (designWorks.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">No Design Works Found</h2>
+          <p className="text-gray-600 mb-6">There are currently no design works to display.</p>
+          <button 
+            onClick={() => navigate('/')}
+            className="px-6 py-3 bg-ski-accent text-white rounded-md hover:bg-ski-accent/90"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+     
+ 
+
+  
 
   const handleImageLoad = (id: number) => {
     setImageLoading(prev => {
@@ -207,7 +174,7 @@ const GraphicDesignPage: React.FC = () => {
                     {/* Image */}
                     {work.type === 'image' && (
                       <motion.img
-                        src={work.src}
+                        src={work.thumbnail || work.src}
                         alt={work.title}
                         className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
                           imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
@@ -228,12 +195,13 @@ const GraphicDesignPage: React.FC = () => {
                             imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
                           }`}
                           style={{ position: imageLoading.has(work.id) ? 'relative' : 'absolute' }}
-                          onLoadedData={() => handleImageLoad(work.id)}
-                          muted
-                          loop
+                          onLoadedMetadata={() => handleImageLoad(work.id)}
+                          preload="metadata"
                           playsInline
+                          muted
+                          controls={false}
                         />
-                        
+
                         {/* Video Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
@@ -246,21 +214,6 @@ const GraphicDesignPage: React.FC = () => {
                     {/* Overlay on Hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="absolute top-3 right-3 flex gap-2">
-                        <motion.button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleLike(work.id);
-                          }}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className={`p-2 rounded-full backdrop-blur-md border border-white/20 transition-all duration-300 ${
-                            likedImages.has(work.id)
-                              ? 'bg-red-500 text-white'
-                              : 'bg-white/20 text-white hover:bg-white/30'
-                          }`}
-                        >
-                          <Heart className={`w-4 h-4 ${likedImages.has(work.id) ? 'fill-current' : ''}`} />
-                        </motion.button>
                         <motion.button
                           onClick={(e) => e.stopPropagation()}
                           whileHover={{ scale: 1.1 }}

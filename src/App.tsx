@@ -9,6 +9,7 @@ import GraphicDesignPage from './pages/GraphicDesignPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import RefundPolicy from './pages/RefundPolicy';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   const location = useLocation();
@@ -83,6 +84,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/admin-ski-dashboard" element={<AdminPage />} />
       </Routes>
       
       <Footer />
