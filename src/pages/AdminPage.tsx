@@ -299,7 +299,7 @@ const AdminPage: React.FC = () => {
                 name="email"
                 type="email"
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -312,7 +312,7 @@ const AdminPage: React.FC = () => {
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -323,7 +323,7 @@ const AdminPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loginLoading}
-                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-ski-accent hover:bg-ski-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ski-accent ${loginLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-skizen-accent hover:bg-skizen-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-skizen-accent ${loginLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {loginLoading ? 'Logging in…' : 'Login'}
               </button>
@@ -333,7 +333,7 @@ const AdminPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigate('/')}
-                className="text-sm text-gray-600 hover:text-ski-accent"
+                className="text-sm text-gray-600 hover:text-skizen-accent"
               >
                 Return to Home
               </button>
@@ -386,7 +386,7 @@ const AdminPage: React.FC = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 />
               </div>
               
@@ -398,7 +398,7 @@ const AdminPage: React.FC = () => {
                   id="type"
                   value={type}
                   onChange={(e) => setType(e.target.value as 'image' | 'video')}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 >
                   <option value="image">Image</option>
                   <option value="video">Video</option>
@@ -413,7 +413,7 @@ const AdminPage: React.FC = () => {
                   id="category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -431,7 +431,7 @@ const AdminPage: React.FC = () => {
                   id="height"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 >
                   {heights.map((h) => (
                     <option key={h.value} value={h.value}>
@@ -451,7 +451,7 @@ const AdminPage: React.FC = () => {
                   accept={type === 'image' ? 'image/*' : 'video/*'}
                   onChange={handleFileChange}
                   required
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-ski-accent focus:border-ski-accent"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-skizen-accent focus:border-skizen-accent"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -461,7 +461,7 @@ const AdminPage: React.FC = () => {
                     type="checkbox"
                     checked={featured}
                     onChange={(e) => setFeatured(e.target.checked)}
-                    className="h-4 w-4 text-ski-accent border-gray-300 rounded focus:ring-ski-accent"
+                    className="h-4 w-4 text-skizen-accent border-gray-300 rounded focus:ring-skizen-accent"
                   />
                   Mark as Featured
                 </label>
@@ -472,7 +472,7 @@ const AdminPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-ski-accent hover:bg-ski-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ski-accent ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-skizen-accent hover:bg-skizen-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-skizen-accent ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {loading ? 'Uploading...' : 'Upload'}
               </button>

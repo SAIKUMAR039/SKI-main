@@ -8,6 +8,7 @@ import GradientText from './animations/GradientText';
 import WaveText from './animations/WaveText';
 import Aurora from './Aurora';
 import RotatingText from './animations/Rotating';
+import LiquidEther from './LiquidEther';
 
 const Hero: React.FC = () => {
   const navigate = useNavigate();
@@ -17,16 +18,27 @@ const Hero: React.FC = () => {
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 ">
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0">
-        <Aurora
-          colorStops={["#FF6B35", "#0A0A0A", "#FF6B35"]}
-          blend={0.3}
-          amplitude={0.8}
-          speed={0.3}
-        />
+      <LiquidEther
+    colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
+    mouseForce={20}
+    cursorSize={100}
+    isViscous={false}
+    viscous={30}
+    iterationsViscous={32}
+    iterationsPoisson={32}
+    resolution={0.5}
+    isBounce={false}
+    autoDemo={true}
+    autoSpeed={0.5}
+    autoIntensity={2.2}
+    takeoverDuration={0.25}
+    autoResumeDelay={3000}
+    autoRampDuration={0.6}
+  />
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-ski-gray/60 to-white/90 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-skizen-gray/60 to-white/90 z-10" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-30">
         <div className="text-center">
@@ -40,33 +52,54 @@ const Hero: React.FC = () => {
 
             {/* Title */}
             <div className="text-5xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 tracking-tight">
-              <WaveText 
-                text="SPARK" 
-                className="block text-ski-black justify-center mb-2"
-                delay={0.2}
-              />
-              <div className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black my-4">
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="relative"
+              >
                 <GradientText 
-                  text="KNACK" 
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black"
-                  gradient="from-ski-accent via-orange-500 to-red-500"
+                  text="SKIZEN" 
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[12rem] font-black block text-center"
+                  gradient="from-skizen-accent via-orange-500 to-red-500"
                 />
-              </div>
-              <WaveText 
-                text="IGNITE" 
-                className="block text-ski-black justify-center mb-2"
-                delay={0.2}
-              />
+                
+                {/* Glow Effect */}
+                <motion.div
+                  className="absolute inset-0 blur-2xl opacity-40"
+                  animate={{
+                    background: [
+                      "linear-gradient(45deg, #6B7280, #9CA3AF, #D1D5DB)",
+                      "linear-gradient(135deg, #6B7280, #9CA3AF, #D1D5DB)",
+                      "linear-gradient(225deg, #6B7280, #9CA3AF, #D1D5DB)",
+                      "linear-gradient(315deg, #6B7280, #9CA3AF, #D1D5DB)",
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  SKIZEN
+                </motion.div>
+              </motion.div>
             </div>
 
             {/* Responsive Subtitle */}
-            <div className="text-base sm:text-lg px-4 md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-700 mb-6 px-4 text-center sm:text-left sm:justify-center sm:items-center sm:flex w-full">
+            <motion.div 
+              className="text-base sm:text-lg px-4 md:text-xl lg:text-2xl xl:text-3xl font-medium text-gray-700 mb-6 px-4 text-center sm:text-left sm:justify-center sm:items-center sm:flex w-full"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
               We create digital experiences with{' '}
               {/* Mobile: show rotating text */}
-              <span className="inline font-bold text-ski-accent align-middle sm:hidden justify-center items-center flex w-full">
+              <span className="inline font-bold text-skizen-accent align-middle sm:hidden justify-center items-center flex w-full">
                 <RotatingText
                   texts={typewriterWords}
-                  mainClassName="inline font-bold text-ski-accent align-middle"
+                  mainClassName="inline font-bold text-skizen-accent align-middle"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
@@ -78,10 +111,10 @@ const Hero: React.FC = () => {
                 />
               </span>
               {/* Desktop: show rotating text */}
-              <span className="hidden sm:inline font-bold text-ski-accent align-middle ">
+              <span className="hidden sm:inline font-bold text-skizen-accent align-middle ">
                 <RotatingText
                   texts={typewriterWords}
-                  mainClassName="inline font-bold text-ski-accent align-middle "
+                  mainClassName="inline font-bold text-skizen-accent align-middle "
                   staggerFrom="first"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
@@ -92,7 +125,7 @@ const Hero: React.FC = () => {
                   rotationInterval={2000}
                 />
               </span>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Subheading Text */}
@@ -121,10 +154,10 @@ const Hero: React.FC = () => {
               onClick={() => navigate('/contact')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-ski-black text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium flex items-center gap-2 transition-all duration-300 hover:bg-ski-accent hover:shadow-lg group relative overflow-hidden text-sm sm:text-base"
+              className="bg-skizen-black text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium flex items-center gap-2 transition-all duration-300 hover:bg-skizen-accent hover:shadow-lg group relative overflow-hidden text-sm sm:text-base"
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-ski-accent to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 bg-gradient-to-r from-skizen-accent to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 initial={false}
               />
               <span className="relative z-10">Start Your Campaign</span>
@@ -140,10 +173,10 @@ const Hero: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-ski-black text-ski-black px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-ski-black hover:text-white transition-all duration-300 flex items-center gap-2 group relative overflow-hidden text-sm sm:text-base"
+                className="border-2 border-skizen-black text-skizen-black px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-skizen-black hover:text-white transition-all duration-300 flex items-center gap-2 group relative overflow-hidden text-sm sm:text-base"
               >
                 <motion.div
-                  className="absolute inset-0 bg-ski-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                  className="absolute inset-0 bg-skizen-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                   initial={false}
                 />
                 <Download className="w-5 h-5 group-hover:scale-110 transition-transform duration-200 relative z-10" />

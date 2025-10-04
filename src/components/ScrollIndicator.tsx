@@ -18,7 +18,7 @@ const ScrollIndicator: React.FC = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-ski-accent via-orange-500 to-red-500 z-50 origin-left"
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-skizen-accent via-orange-500 to-red-500 z-50 origin-left"
       style={{
         scaleX: scrollProgress,
         transformOrigin: '0%',

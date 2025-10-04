@@ -7,9 +7,9 @@ export default {
         'inter': ['Inter', 'sans-serif'],
       },
       colors: {
-        'ski-black': '#0A0A0A',
-        'ski-gray': '#F8F8F8',
-        'ski-accent': '#FF6B35',
+        'skizen-black': '#0A0A0A',
+        'skizen-gray': '#F8F8F8',
+        'skizen-accent': '#FF6B35',
       },
       backgroundSize: {
         '300%': '300%',

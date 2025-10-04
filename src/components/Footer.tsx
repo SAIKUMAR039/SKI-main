@@ -5,7 +5,7 @@ import { Instagram, Mail } from 'lucide-react';
 const Footer: React.FC = () => {
   const socialLinks = [
   
-    { icon: Mail, href: 'mailto:ski.creativelab@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:skizen.creativelab@gmail.com', label: 'Email' },
     { icon: Instagram, href: 'https://www.instagram.com/ski.creativelab/', label: 'Instagram' },
   ];  
 
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-ski-black text-white py-10">
+    <footer className="bg-skizen-black text-white py-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-10">
           {/* Brand Section */}
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <img src="/full_logo.png" alt="SKI Logo" className=" h-12 w-auto filter invert" />
+              <img src="/full_logo.png" alt="SKIZEN Logo" className=" h-12 w-auto filter invert" />
             </motion.div>
             
             <motion.p 
@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
           viewport={{ once: true }}
         >
           <p className="text-gray-400 text-sm">
-            © 2024 SKI Creative Lab. All rights reserved. | Warangal, India
+            © 2024 SKIZEN Creative Lab. All rights reserved. | Warangal, India
           </p>
         </motion.div>
       </div>

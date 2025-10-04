@@ -42,7 +42,7 @@ const GraphicDesignPage: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-ski-accent"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-skizen-accent"></div>
       </div>
     );
   }
@@ -73,7 +73,7 @@ const GraphicDesignPage: React.FC = () => {
           <p className="text-gray-600 mb-6">There are currently no design works to display.</p>
           <button 
             onClick={() => navigate('/')}
-            className="px-6 py-3 bg-ski-accent text-white rounded-md hover:bg-ski-accent/90"
+            className="px-6 py-3 bg-skizen-accent text-white rounded-md hover:bg-skizen-accent/90"
           >
             Back to Home
           </button>
@@ -99,12 +99,12 @@ const GraphicDesignPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-ski-gray via-white to-ski-gray">
+    <div className="min-h-screen bg-gradient-to-br from-skizen-gray via-white to-skizen-gray">
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 lg:pb-16 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10 sm:opacity-20">
-          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-ski-accent/30 to-orange-500/30 rounded-full blur-2xl sm:blur-3xl" />
+          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-skizen-accent/30 to-orange-500/30 rounded-full blur-2xl sm:blur-3xl" />
           <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl sm:blur-3xl" />
         </div>
 
@@ -122,14 +122,14 @@ const GraphicDesignPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-ski-accent/10 to-purple-500/10 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-full border border-ski-accent/20 mb-4 sm:mb-6 lg:mb-8"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-skizen-accent/10 to-purple-500/10 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-full border border-skizen-accent/20 mb-4 sm:mb-6 lg:mb-8"
             >
-              <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-ski-accent" />
-              <span className="text-ski-accent font-semibold text-xs sm:text-sm lg:text-base">Design Gallery</span>
+              <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-skizen-accent" />
+              <span className="text-skizen-accent font-semibold text-xs sm:text-sm lg:text-base">Design Gallery</span>
             </motion.div>
 
             <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-ski-black mb-4 sm:mb-6 lg:mb-8 tracking-tight px-2"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-skizen-black mb-4 sm:mb-6 lg:mb-8 tracking-tight px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -205,7 +205,7 @@ const GraphicDesignPage: React.FC = () => {
                         {/* Video Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                            <Play className="w-6 h-6 sm:w-8 sm:h-8 text-ski-black ml-1" />
+                            <Play className="w-6 h-6 sm:w-8 sm:h-8 text-skizen-black ml-1" />
                           </div>
                         </div>
                       </div>
@@ -240,7 +240,7 @@ const GraphicDesignPage: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-ski-black to-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:from-ski-accent hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+              className="bg-gradient-to-r from-skizen-black to-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:from-skizen-accent hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
             >
               Load More Designs
             </motion.button>

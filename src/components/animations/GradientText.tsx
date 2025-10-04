@@ -11,7 +11,7 @@ interface GradientTextProps {
 const GradientText: React.FC<GradientTextProps> = ({ 
   text, 
   className = '',
-  gradient = 'from-ski-accent via-orange-500 to-red-500',
+  gradient = 'from-skizen-accent via-orange-500 to-red-500',
   animate = true
 }) => {
   return (

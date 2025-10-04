@@ -61,12 +61,12 @@ const RefundPolicy: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-ski-gray via-white to-ski-gray">
+    <div className="min-h-screen bg-gradient-to-br from-skizen-gray via-white to-skizen-gray">
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 lg:pb-16 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10 sm:opacity-20">
-          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-ski-accent/30 to-orange-500/30 rounded-full blur-2xl sm:blur-3xl" />
+          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-br from-skizen-accent/30 to-orange-500/30 rounded-full blur-2xl sm:blur-3xl" />
           <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl sm:blur-3xl" />
         </div>
 
@@ -77,7 +77,7 @@ const RefundPolicy: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 text-ski-black hover:text-ski-accent transition-colors duration-300 mb-6 sm:mb-8 group text-sm sm:text-base"
+            className="inline-flex items-center gap-2 text-skizen-black hover:text-skizen-accent transition-colors duration-300 mb-6 sm:mb-8 group text-sm sm:text-base"
           >
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform duration-200" />
             <span className="font-medium">Back to Home</span>
@@ -93,14 +93,14 @@ const RefundPolicy: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-ski-accent/10 to-purple-500/10 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-full border border-ski-accent/20 mb-4 sm:mb-6 lg:mb-8"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-skizen-accent/10 to-purple-500/10 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-full border border-skizen-accent/20 mb-4 sm:mb-6 lg:mb-8"
             >
-              <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5 text-ski-accent" />
-              <span className="text-ski-accent font-semibold text-xs sm:text-sm lg:text-base">Refund Policy</span>
+              <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5 text-skizen-accent" />
+              <span className="text-skizen-accent font-semibold text-xs sm:text-sm lg:text-base">Refund Policy</span>
             </motion.div>
 
             <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-ski-black mb-4 sm:mb-6 lg:mb-8 tracking-tight px-2"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-skizen-black mb-4 sm:mb-6 lg:mb-8 tracking-tight px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -141,13 +141,13 @@ const RefundPolicy: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mb-12 sm:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-ski-black mb-6">Our Commitment</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-skizen-black mb-6">Our Commitment</h2>
             <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
               <p>
-                At SKI Creative Lab, we are committed to delivering exceptional results and ensuring complete client satisfaction. We understand that sometimes projects may not work out as planned, and we have established this refund policy to address such situations fairly and transparently.
+                At SKIZENZEN Creative Lab, we are committed to delivering exceptional results and ensuring complete client satisfaction. We understand that sometimes projects may not work out as planned, and we have established this refund policy to address such situations fairly and transparently.
               </p>
               <p>
-                This policy applies to all services provided by SKI Creative Lab, including digital marketing, graphic design, web development, and AI automation services.
+                This policy applies to all services provided by SKIZENZEN Creative Lab, including digital marketing, graphic design, web development, and AI automation services.
               </p>
             </div>
           </motion.div>
@@ -187,7 +187,7 @@ const RefundPolicy: React.FC = () => {
             transition={{ duration: 0.6, delay: 1.0 }}
             className="mb-12 sm:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-ski-black mb-8">Refund Process</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-skizen-black mb-8">Refund Process</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {refundProcess.map((step, index) => (
                 <motion.div
@@ -197,10 +197,10 @@ const RefundPolicy: React.FC = () => {
                   transition={{ duration: 0.6, delay: 1.1 + index * 0.1 }}
                   className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-gray-200/50 shadow-lg text-center"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-ski-accent to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-skizen-accent to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-white font-bold text-lg">{step.step}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-ski-black mb-2">{step.title}</h3>
+                  <h3 className="text-lg font-bold text-skizen-black mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-600">{step.description}</p>
                 </motion.div>
               ))}
@@ -212,34 +212,34 @@ const RefundPolicy: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.5 }}
-            className="bg-gradient-to-r from-ski-accent/10 to-orange-500/10 rounded-2xl p-6 sm:p-8 border border-ski-accent/20"
+            className="bg-gradient-to-r from-skizen-accent/10 to-orange-500/10 rounded-2xl p-6 sm:p-8 border border-skizen-accent/20"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-ski-accent to-orange-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-skizen-accent to-orange-500 rounded-xl flex items-center justify-center">
                 <AlertCircle className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-ski-black">Important Information</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-skizen-black">Important Information</h3>
             </div>
             <div className="space-y-4 text-gray-700">
               <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-ski-accent mt-0.5 flex-shrink-0" />
+                <Clock className="w-5 h-5 text-skizen-accent mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-ski-black mb-1">Processing Time</h4>
+                  <h4 className="font-semibold text-skizen-black mb-1">Processing Time</h4>
                   <p className="text-sm sm:text-base">Refunds are typically processed within 7-14 business days after approval.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <RefreshCw className="w-5 h-5 text-ski-accent mt-0.5 flex-shrink-0" />
+                <RefreshCw className="w-5 h-5 text-skizen-accent mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-ski-black mb-1">Payment Method</h4>
+                  <h4 className="font-semibold text-skizen-black mb-1">Payment Method</h4>
                   <p className="text-sm sm:text-base">Refunds will be issued to the original payment method used for the transaction.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-ski-accent mt-0.5 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 text-skizen-accent mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-ski-black mb-1">Communication</h4>
-                  <p className="text-sm sm:text-base">All refund requests must be submitted in writing via email to ski.creativelab@gmail.com.</p>
+                  <h4 className="font-semibold text-skizen-black mb-1">Communication</h4>
+                  <p className="text-sm sm:text-base">All refund requests must be submitted in writing via email to skizen.creativelab@gmail.com.</p>
                 </div>
               </div>
             </div>
@@ -252,11 +252,11 @@ const RefundPolicy: React.FC = () => {
             transition={{ duration: 0.6, delay: 1.6 }}
             className="mt-8 sm:mt-12 bg-white/90 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-gray-200/50"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-ski-black mb-4">Contact Us</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-skizen-black mb-4">Contact Us</h3>
             <div className="space-y-3 text-gray-700">
               <p>For refund requests or questions about this policy, please contact us:</p>
               <ul className="space-y-2">
-                <li><strong>Email:</strong> ski.creativelab@gmail.com</li>
+                <li><strong>Email:</strong> skizen.creativelab@gmail.com</li>
                 <li><strong>Phone:</strong> +91 9392898633</li>
                 <li><strong>Address:</strong> Warangal, India</li>
               </ul>

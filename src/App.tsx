@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollIndicator from './components/ScrollIndicator';
+import ScrollToTop from './components/ScrollToTop';
+import LoadingAnimation from './components/LoadingAnimation';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import GraphicDesignPage from './pages/GraphicDesignPage';
@@ -13,11 +15,16 @@ import AdminPage from './pages/AdminPage';
 
 function App() {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   // Scroll to top when route changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     // Enhanced smooth scrolling for the entire page
@@ -74,20 +81,26 @@ function App() {
 
   return (
     <div className="font-inter overflow-x-hidden">
-      <ScrollIndicator />
-      <Header />
+      <LoadingAnimation onComplete={handleLoadingComplete} />
       
-      <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/graphic-design" element={<GraphicDesignPage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/refund-policy" element={<RefundPolicy />} />
-        <Route path="/admin-ski-dashboard" element={<AdminPage />} />
-      </Routes>
-      
-      <Footer />
+      {!isLoading && (
+        <>
+          <ScrollIndicator />
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage/>} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/graphic-design" element={<GraphicDesignPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/admin-skizen-dashboard" element={<AdminPage />} />
+          </Routes>
+          
+          <Footer />
+          <ScrollToTop />
+        </>
+      )}
     </div>
   );
 }

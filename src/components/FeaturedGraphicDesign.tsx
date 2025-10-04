@@ -46,8 +46,8 @@ const FeaturedGraphicDesign: React.FC = () => {
           },
           {
             id: 2,
-            title: 'SKI Poster',
-            src: '/media/SKI.png',
+            title: 'SKIZEN Poster',
+            src: '/media/SKIZEN.png',
             height: 'h-64',
             category: 'Poster Design',
             type: 'image'
@@ -86,7 +86,7 @@ const FeaturedGraphicDesign: React.FC = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-ski-gray/30 to-white">
+    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-skizen-gray/30 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -101,10 +101,10 @@ const FeaturedGraphicDesign: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-ski-accent/10 to-purple-500/10 px-4 py-2 rounded-full border border-ski-accent/20 mb-6"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-skizen-accent/10 to-purple-500/10 px-4 py-2 rounded-full border border-skizen-accent/20 mb-6"
           >
-            <Eye className="w-4 h-4 text-ski-accent" />
-            <span className="text-ski-accent font-semibold text-sm">Featured Works</span>
+            <Eye className="w-4 h-4 text-skizen-accent" />
+            <span className="text-skizen-accent font-semibold text-sm">Featured Works</span>
           </motion.div>
 
           <motion.h2
@@ -112,7 +112,7 @@ const FeaturedGraphicDesign: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-ski-black mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-skizen-black mb-6 tracking-tight"
           >
             Featured Graphic Design
           </motion.h2>
@@ -165,7 +165,7 @@ const FeaturedGraphicDesign: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <div className="absolute bottom-4 left-4 right-4">
                       <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
-                        <h3 className="text-ski-black font-semibold text-sm mb-1">{work.title}</h3>
+                        <h3 className="text-skizen-black font-semibold text-sm mb-1">{work.title}</h3>
                         <p className="text-gray-600 text-xs">{work.category}</p>
                       </div>
                     </div>
@@ -188,7 +188,7 @@ const FeaturedGraphicDesign: React.FC = () => {
             onClick={() => navigate('/graphic-design')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-ski-black to-gray-800 text-white px-8 py-4 rounded-xl font-semibold hover:from-ski-accent hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl group"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-skizen-black to-gray-800 text-white px-8 py-4 rounded-xl font-semibold hover:from-skizen-accent hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl group"
           >
             <span>View All Designs</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />

@@ -98,7 +98,7 @@ const Services: React.FC = () => {
     <section id="services" className="py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-ski-accent/20 to-orange-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-skizen-accent/20 to-orange-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-full blur-3xl" />
       </div>
@@ -115,14 +115,14 @@ const Services: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-ski-accent/10 to-orange-500/10 px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-ski-accent/20 mb-6 sm:mb-8"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-skizen-accent/10 to-orange-500/10 px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-skizen-accent/20 mb-6 sm:mb-8"
           >
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-ski-accent" />
-            <span className="text-ski-accent font-semibold text-sm sm:text-base">Our Expertise</span>
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-skizen-accent" />
+            <span className="text-skizen-accent font-semibold text-sm sm:text-base">Our Expertise</span>
           </motion.div>
 
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-ski-black mb-6 sm:mb-8 tracking-tight px-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-skizen-black mb-6 sm:mb-8 tracking-tight px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -180,7 +180,7 @@ const Services: React.FC = () => {
                 
                 {/* Content */}
                 <div className="relative z-10">
-                  <h3 className="text-lg sm:text-xl font-bold text-ski-black mb-3 sm:mb-4 group-hover:text-gray-800 transition-colors duration-300 leading-tight">
+                  <h3 className="text-lg sm:text-xl font-bold text-skizen-black mb-3 sm:mb-4 group-hover:text-gray-800 transition-colors duration-300 leading-tight">
                     {service.title}
                   </h3>
                   
@@ -199,7 +199,7 @@ const Services: React.FC = () => {
                         transition={{ duration: 0.4, delay: 0.6 + index * 0.1 + idx * 0.05 }}
                       >
                         <motion.div 
-                          className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gradient-to-r from-ski-accent to-orange-500 rounded-full mr-2 sm:mr-3 flex-shrink-0"
+                          className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gradient-to-r from-skizen-accent to-orange-500 rounded-full mr-2 sm:mr-3 flex-shrink-0"
                           whileHover={{ scale: 1.5 }}
                           transition={{ duration: 0.2 }}
                         />
@@ -230,7 +230,7 @@ const Services: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.8, y: 10 }}
                 whileHover={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-to-r from-ski-accent to-orange-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-semibold shadow-lg opacity-0 group-hover:opacity-100"
+                className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-to-r from-skizen-accent to-orange-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-semibold shadow-lg opacity-0 group-hover:opacity-100"
               >
                 Popular
               </motion.div>
@@ -245,8 +245,8 @@ const Services: React.FC = () => {
           transition={{ duration: 0.6, delay: 1.2 }}
           className="text-center mt-16 sm:mt-20"
         >
-          <div className="bg-gradient-to-r from-ski-black to-gray-800 rounded-2xl sm:rounded-3xl p-8 sm:p-12 relative overflow-hidden mx-4 sm:mx-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-ski-accent/10 to-orange-500/10 opacity-50" />
+          <div className="bg-gradient-to-r from-skizen-black to-gray-800 rounded-2xl sm:rounded-3xl p-8 sm:p-12 relative overflow-hidden mx-4 sm:mx-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-skizen-accent/10 to-orange-500/10 opacity-50" />
             <div className="relative z-10">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Ready to Transform Your Business?
@@ -258,7 +258,7 @@ const Services: React.FC = () => {
                 onClick={() => navigate('/contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-ski-accent to-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold flex items-center gap-2 mx-auto hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+                className="bg-gradient-to-r from-skizen-accent to-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold flex items-center gap-2 mx-auto hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
               >
                 Get Started Today
                 <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />

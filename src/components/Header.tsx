@@ -72,12 +72,16 @@ const Header = () => {
                 onClick={() => handleNavClick('/')}
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 lg:w-12 lg:h-12  rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-                   <img src="/full_logo.png" alt="logo" />
+                  <div className="h-12 lg:h-14 flex items-center justify-center ">
+                   <img 
+                     src="/full_logo.png" 
+                     alt="SKIZEN Logo" 
+                     className="h-10 lg:h-12 w-auto object-contain rounded-md"
+                   />
                   </div>
                   <div className="hidden sm:block">
-                    <span className="text-ski-black font-bold text-xl lg:text-2xl tracking-tight font-inter">
-                      SKI
+                    <span className="text-skizen-black font-bold text-xl lg:text-2xl tracking-tight font-inter">
+                      SKIZEN
                     </span>
                     <div className="text-gray-500 text-xs tracking-wider uppercase font-inter">
                       Creative & Tech Solutions
@@ -93,14 +97,14 @@ const Header = () => {
                 <button
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
-                  className="group relative text-ski-black transition-all duration-300 font-inter focus:outline-none focus:ring-0"
+                  className="group relative text-skizen-black transition-all duration-300 font-inter focus:outline-none focus:ring-0"
                 >
                   <span className="relative z-10 text-sm font-medium tracking-wide">
                     {item.name}
                   </span>
                    
                   {/* Hover underline */}
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-ski-accent group-hover:w-full transition-all duration-300" />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-skizen-accent group-hover:w-full transition-all duration-300" />
                 </button>
               ))}
             </nav>
@@ -109,7 +113,7 @@ const Header = () => {
             <div className="hidden lg:flex items-center">
               <button 
                 onClick={() => handleNavClick('/contact')}
-                className="group relative bg-ski-accent text-white px-8 py-3 rounded-full font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-105 font-inter focus:outline-none focus:ring-0"
+                className="group relative bg-skizen-accent text-white px-8 py-3 rounded-full font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-skizen-accent/30 hover:scale-105 font-inter focus:outline-none focus:ring-0"
               >
                 <span className="flex items-center space-x-2">
                   <span>Let's Talk</span>
@@ -121,7 +125,7 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden relative p-2 text-ski-black hover:text-ski-accent transition-colors duration-300 focus:outline-none focus:ring-0"
+              className="lg:hidden relative p-2 text-skizen-black hover:text-skizen-accent transition-colors duration-300 focus:outline-none focus:ring-0"
             >
               <div className="w-6 h-6 flex items-center justify-center">
                 {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -136,7 +140,7 @@ const Header = () => {
         <div className="fixed inset-0 z-40 lg:hidden">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-ski-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-skizen-black/20 backdrop-blur-sm"
             onClick={() => setIsMenuOpen(false)}
           />
           
@@ -152,7 +156,7 @@ const Header = () => {
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className="group w-full flex items-center justify-between p-4 text-left text-ski-black hover:text-ski-accent hover:bg-ski-gray rounded-xl transition-all duration-300 focus:outline-none focus:ring-0"
+                    className="group w-full flex items-center justify-between p-4 text-left text-skizen-black hover:text-skizen-accent hover:bg-skizen-gray rounded-xl transition-all duration-300 focus:outline-none focus:ring-0"
                   >
                     <div className="flex items-center space-x-4">
                        
@@ -162,7 +166,7 @@ const Header = () => {
                     </div>
                     <ArrowUpRight 
                       size={18} 
-                      className="text-gray-400 group-hover:text-ski-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                      className="text-gray-400 group-hover:text-skizen-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                     />
                   </button>
                 ))}
@@ -172,7 +176,7 @@ const Header = () => {
               <div className="pt-6 border-t border-gray-100">
                 <button 
                   onClick={() => handleNavClick('/contact')}
-                  className="w-full bg-ski-accent text-white py-4 rounded-xl font-medium text-center transition-all duration-300 hover:shadow-lg hover:shadow-ski-accent/30 hover:scale-[1.02] font-inter focus:outline-none focus:ring-0"
+                  className="w-full bg-skizen-accent text-white py-4 rounded-xl font-medium text-center transition-all duration-300 hover:shadow-lg hover:shadow-skizen-accent/30 hover:scale-[1.02] font-inter focus:outline-none focus:ring-0"
                 >
                   Let's Talk
                 </button>
@@ -193,7 +197,7 @@ const Header = () => {
       <div className="lg:hidden fixed bottom-6 right-6 z-30">
         <button
           onClick={() => handleNavClick('/contact')}
-          className="bg-ski-accent text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse-glow focus:outline-none focus:ring-0"
+          className="bg-skizen-accent text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse-glow focus:outline-none focus:ring-0"
         >
           <ArrowUpRight size={20} className="text-white" />
         </button>

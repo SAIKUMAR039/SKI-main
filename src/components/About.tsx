@@ -63,21 +63,11 @@ const About: React.FC = () => {
       bgGradient: 'from-blue-50 to-cyan-50',
   
     },
-    {
-      name: 'Malayala Sai Chandra',
-      role: 'Teach & Operations',
-      title: 'Tech & Operations',
-      description: 'Sai Chandra oversees all aspects of technology and operations within the company, ensuring seamless integration of innovative solutions with efficient execution. With a strong focus on digital transformation, Sai leverages cutting-edge technologies to drive scalability, optimize workflows, and enhance operational resilience. ',
-      specialties: ['Full stack developer', 'Operations Manager', 'Business Development', 'Brand Development'],
-      image: '/sai_chandra.JPG',
-      icon: UserRound,
-            gradient: 'from-orange-500 to-yellow-500',
-      bgGradient: 'from-orange-50 to-yellow-50',
-    },
+    
   ];
 
   return (
-    <section id="about" className="py-32 bg-ski-gray relative overflow-hidden">
+    <section id="about" className="py-32 bg-skizen-gray relative overflow-hidden">
       {/* Parallax Background Pattern */}
       <div 
         ref={parallaxRef as React.RefObject<HTMLDivElement>}
@@ -99,12 +89,12 @@ const About: React.FC = () => {
           className="text-center mb-20"
         >
           <motion.h2 
-            className="text-4xl md:text-6xl font-bold text-ski-black mb-8 tracking-tight"
+            className="text-4xl md:text-6xl font-bold text-skizen-black mb-8 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            About SKI
+            About SKIZEN
           </motion.h2>
           <div className="max-w-4xl mx-auto">
             <motion.p 
@@ -121,7 +111,7 @@ const About: React.FC = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              SKI – Spark, Knack, Ignite. Our mission is to ignite bold ideas, apply deep expertise, and deliver transformative results that empower our clients to lead in their industries.
+              SKIZEN – Spark, Knack, Ignite. Our mission is to ignite bold ideas, apply deep expertise, and deliver transformative results that empower our clients to lead in their industries.
             </motion.p>
           </div>
         </motion.div>
@@ -150,7 +140,7 @@ const About: React.FC = () => {
                 transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
               }}
             >
-              <div className="text-3xl md:text-4xl font-bold text-ski-black mb-2">
+              <div className="text-3xl md:text-4xl font-bold text-skizen-black mb-2">
                 {stat.number}{stat.suffix}
               </div>
               <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
@@ -180,10 +170,10 @@ const About: React.FC = () => {
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-8 group-hover:shadow-xl transition-all duration-300"
               >
-                <value.icon className="w-10 h-10 text-ski-accent" />
+                <value.icon className="w-10 h-10 text-skizen-accent" />
               </motion.div>
               
-              <h3 className="text-2xl font-bold text-ski-black mb-4 tracking-wide">
+              <h3 className="text-2xl font-bold text-skizen-black mb-4 tracking-wide">
                 {value.title}
               </h3>
               
@@ -206,19 +196,19 @@ const About: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-ski-accent/10 to-orange-500/10 px-6 py-3 rounded-full border border-ski-accent/20 mb-8"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-skizen-accent/10 to-orange-500/10 px-6 py-3 rounded-full border border-skizen-accent/20 mb-8"
             >
-              <User className="w-5 h-5 text-ski-accent" />
-              <span className="text-ski-accent font-semibold">Meet Our Leaders</span>
+              <User className="w-5 h-5 text-skizen-accent" />
+              <span className="text-skizen-accent font-semibold">Meet Our Leaders</span>
             </motion.div>
             
             <motion.h3 
-              className="text-4xl md:text-5xl font-bold text-ski-black mb-6 tracking-tight"
+              className="text-4xl md:text-5xl font-bold text-skizen-black mb-6 tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
-              The Visionaries Behind SKI
+              The Visionaries Behind SKIZEN
             </motion.h3>
             <motion.p 
               className="text-xl text-gray-600 leading-relaxed font-light max-w-3xl mx-auto"
@@ -226,11 +216,11 @@ const About: React.FC = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.1 }}
             >
-              Meet the dynamic duo driving innovation and excellence at SKI Creative Lab
+              Meet the dynamic duo driving innovation and excellence at SKIZEN Creative Lab
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {founders.map((founder, index) => (
               <motion.div
                 key={founder.name}
@@ -239,7 +229,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.6, delay: 1.2 + index * 0.2 }}
                 className="group"
               >
-                <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 lg:p-8 border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
+                <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 lg:p-8 xl:p-10 border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden h-full">
                   {/* Background Gradient */}
                   <motion.div
                     className={`absolute inset-0 bg-gradient-to-br ${founder.bgGradient} opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl`}
@@ -263,7 +253,7 @@ const About: React.FC = () => {
                           </div>
                           
                           {/* Profile Image */}
-                          <div className="relative w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                          <div className="relative w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-44 xl:h-44 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                             <img
                               src={founder.image}
                               alt={founder.name}
@@ -302,13 +292,13 @@ const About: React.FC = () => {
 
                     {/* Name and Title */}
                     <div className="mb-6">
-                      <h4 className="text-xl lg:text-2xl font-bold text-ski-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
+                      <h4 className="text-xl md:text-2xl lg:text-3xl font-bold text-skizen-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
                         {founder.name}
                       </h4>
-                      <p className="text-base font-semibold text-ski-accent mb-4">
+                      <p className="text-base md:text-lg font-semibold text-skizen-accent mb-4">
                         {founder.title}
                       </p>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 text-sm">
+                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 text-sm md:text-base">
                         {founder.description}
                       </p>
                     </div>
@@ -318,11 +308,11 @@ const About: React.FC = () => {
                       <h5 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
                         Specialties
                       </h5>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 md:gap-3">
                         {founder.specialties.map((specialty, idx) => (
                           <motion.span
                             key={specialty}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full border border-gray-200 hover:bg-gradient-to-r hover:from-ski-accent/10 hover:to-orange-500/10 hover:text-ski-accent hover:border-ski-accent/30 transition-all duration-200"
+                            className="px-3 py-1 md:px-4 md:py-2 bg-gray-100 text-gray-700 text-xs md:text-sm font-medium rounded-full border border-gray-200 hover:bg-gradient-to-r hover:from-skizen-accent/10 hover:to-orange-500/10 hover:text-skizen-accent hover:border-skizen-accent/30 transition-all duration-200"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={inView ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 0.3, delay: 1.4 + index * 0.2 + idx * 0.05 }}
@@ -355,8 +345,8 @@ const About: React.FC = () => {
             transition={{ duration: 0.6, delay: 1.6 }}
             className="mt-16 text-center"
           >
-            <div className="bg-gradient-to-r from-ski-black to-gray-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-ski-accent/10 to-orange-500/10 opacity-50" />
+            <div className="bg-gradient-to-r from-skizen-black to-gray-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-skizen-accent/10 to-orange-500/10 opacity-50" />
               <div className="relative z-10">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -383,7 +373,7 @@ const About: React.FC = () => {
                   transition={{ duration: 0.6, delay: 1.9 }}
                 >
                   With Syed's creative vision and marketing expertise combined with Sai's technical prowess and development skills, 
-                  SKI Creative Lab delivers comprehensive digital solutions that drive real business growth and lasting success.
+                  SKIZEN Creative Lab delivers comprehensive digital solutions that drive real business growth and lasting success.
                 </motion.p>
               </div>
             </div>

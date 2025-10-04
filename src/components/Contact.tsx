@@ -34,10 +34,10 @@ const Contact: React.FC = () => {
         from_email: formData.email,
         company: formData.company,
         message: formData.message,
-        to_name: 'SKI Team',
+        to_name: 'SKIZEN Team',
       };
 
-      // Send main email to SKI team
+      // Send main email to SKIZEN team
       await emailjs.send(
         'service_uty2ypf', // Replace with your service ID
         'template_9lrewlc', // Replace with your template ID
@@ -78,8 +78,8 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'ski.creativelab@gmail.com',
-      link: 'mailto:ski.creativelab@gmail.com',
+      value: 'skizen.creativelab@gmail.com',
+      link: 'mailto:skizen.creativelab@gmail.com',
     },
     {
       icon: Phone,
@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
           className="text-center mb-20"
         >
           <motion.h2 
-            className="text-4xl md:text-6xl font-bold text-ski-black mb-8 tracking-tight"
+            className="text-4xl md:text-6xl font-bold text-skizen-black mb-8 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -149,7 +149,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ski-accent focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-skizen-accent focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Your name"
                   />
                 </motion.div>
@@ -170,7 +170,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ski-accent focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-skizen-accent focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="your@email.com"
                   />
                 </motion.div>
@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
                   value={formData.company}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ski-accent focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-skizen-accent focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Your company"
                 />
               </motion.div>
@@ -212,7 +212,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ski-accent focus:border-transparent transition-all duration-200 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-skizen-accent focus:border-transparent transition-all duration-200 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Tell us about your marketing goals..."
                 />
               </motion.div>
@@ -245,7 +245,7 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 disabled={isSubmitting}
-                className="w-full bg-ski-black text-white px-8 py-4 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-ski-accent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-skizen-black text-white px-8 py-4 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-skizen-accent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.8 }}
@@ -282,7 +282,7 @@ const Contact: React.FC = () => {
           >
             <div>
               <motion.h3 
-                className="text-2xl font-bold text-ski-black mb-6"
+                className="text-2xl font-bold text-skizen-black mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.5 }}
@@ -306,19 +306,19 @@ const Contact: React.FC = () => {
                   href={info.link}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
-                  className="flex items-center gap-4 p-4 bg-ski-gray rounded-lg hover:shadow-md transition-all duration-300 group"
+                  className="flex items-center gap-4 p-4 bg-skizen-gray rounded-lg hover:shadow-md transition-all duration-300 group"
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
                 >
                   <div className="flex items-center justify-center w-12 h-12 bg-white rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300">
-                    <info.icon className="w-6 h-6 text-ski-accent" />
+                    <info.icon className="w-6 h-6 text-skizen-accent" />
                   </div>
                   <div>
                     <div className="text-sm text-gray-500 font-medium">
                       {info.title}
                     </div>
-                    <div className="text-ski-black font-medium">
+                    <div className="text-skizen-black font-medium">
                       {info.value}
                     </div>
                   </div>
@@ -327,12 +327,12 @@ const Contact: React.FC = () => {
             </div>
 
             <motion.div 
-              className="bg-ski-gray p-6 rounded-lg"
+              className="bg-skizen-gray p-6 rounded-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 1.0 }}
             >
-              <h4 className="text-lg font-bold text-ski-black mb-3">
+              <h4 className="text-lg font-bold text-skizen-black mb-3">
                 Campaign Timeline
               </h4>
               <p className="text-gray-600 text-sm leading-relaxed">
