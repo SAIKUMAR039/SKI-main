@@ -63,6 +63,19 @@ const About: React.FC = () => {
       bgGradient: 'from-blue-50 to-cyan-50',
   
     },
+    {
+  name: 'Manideep Pasula',
+  role: 'Creative Media & Visual Arts',
+  title: 'Creative Director & Visual Storyteller',
+  description: 'Manideep Pasula is a multidisciplinary creator specializing in the art of visual communication through film, photography, and design. His work seamlessly blends aesthetic intuition with technical precision—crafting narratives that captivate, inform, and inspire. With a deep understanding of modern media dynamics, Manideep orchestrates the entire creative process from conception to post-production, ensuring every frame and composition resonates with purpose and emotion. His expertise lies in transforming abstract ideas into compelling visual experiences that elevate brands and engage audiences.',
+  specialties: ['Filmmaking', 'Photography', 'Video Editing', 'Poster Design', 'Creative Direction'],
+  image: '/Manideep.jpg',
+  icon: UserRound,
+  gradient: 'from-blue-500 to-indigo-500',
+  bgGradient: 'from-blue-50 to-indigo-50',
+  linkedin: 'https://www.linkedin.com/in/manideep-pasula/',
+  portfolio: 'https://www.manideeppasula.com/',
+}
     
   ];
 
@@ -220,7 +233,7 @@ const About: React.FC = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {founders.map((founder, index) => (
               <motion.div
                 key={founder.name}
