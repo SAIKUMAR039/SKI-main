@@ -67,14 +67,13 @@ const About: React.FC = () => {
   name: 'Manideep Pasula',
   role: 'Creative Media & Visual Arts',
   title: 'Creative Director & Visual Storyteller',
-  description: 'Manideep Pasula is a multidisciplinary creator specializing in the art of visual communication through film, photography, and design. His work seamlessly blends aesthetic intuition with technical precision—crafting narratives that captivate, inform, and inspire. With a deep understanding of modern media dynamics, Manideep orchestrates the entire creative process from conception to post-production, ensuring every frame and composition resonates with purpose and emotion. His expertise lies in transforming abstract ideas into compelling visual experiences that elevate brands and engage audiences.',
+  description: 'Manideep Pasula is a multidisciplinary creative directing film, photography, and design. He combines aesthetic intuition with technical precision to turn ideas into memorable visual experiences that elevate brands.',
   specialties: ['Filmmaking', 'Photography', 'Video Editing', 'Poster Design', 'Creative Direction'],
   image: '/Manideep.jpg',
   icon: UserRound,
   gradient: 'from-blue-500 to-indigo-500',
   bgGradient: 'from-blue-50 to-indigo-50',
-  linkedin: 'https://www.linkedin.com/in/manideep-pasula/',
-  portfolio: 'https://www.manideeppasula.com/',
+
 }
     
   ];
@@ -250,7 +249,7 @@ const About: React.FC = () => {
                     whileHover={{ scale: 1, opacity: 1 }}
                   />
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex flex-col h-full">
                     {/* Founder Image and Role Badge */}
                     <div className="flex flex-col items-center mb-8">
                       {/* Profile Image Container */}
@@ -304,36 +303,58 @@ const About: React.FC = () => {
                     </div>
 
                     {/* Name and Title */}
-                    <div className="mb-6">
+                    <div className="mb-6 text-center">
                       <h4 className="text-xl md:text-2xl lg:text-3xl font-bold text-skizen-black mb-2 group-hover:text-gray-800 transition-colors duration-300">
                         {founder.name}
                       </h4>
                       <p className="text-base md:text-lg font-semibold text-skizen-accent mb-4">
                         {founder.title}
                       </p>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 text-sm md:text-base">
+                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 text-sm md:text-base max-w-xl mx-auto">
                         {founder.description}
                       </p>
                     </div>
 
-                    {/* Specialties */}
-                    <div className="mb-6">
-                      <h5 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                        Specialties
-                      </h5>
-                      <div className="flex flex-wrap gap-2 md:gap-3">
-                        {founder.specialties.map((specialty, idx) => (
-                          <motion.span
-                            key={specialty}
-                            className="px-3 py-1 md:px-4 md:py-2 bg-gray-100 text-gray-700 text-xs md:text-sm font-medium rounded-full border border-gray-200 hover:bg-gradient-to-r hover:from-skizen-accent/10 hover:to-orange-500/10 hover:text-skizen-accent hover:border-skizen-accent/30 transition-all duration-200"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={inView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{ duration: 0.3, delay: 1.4 + index * 0.2 + idx * 0.05 }}
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            {specialty}
-                          </motion.span>
-                        ))}
+                    {/* Divider + Bottom area */}
+                    <div className="mt-auto pt-6">
+                      <div className="h-px bg-gray-100 mb-6" />
+
+                      {/* Specialties */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                          Specialties
+                        </h5>
+                        <div className="flex flex-col gap-3 items-start" role="list" aria-label={`${founder.name} specialties`}>
+                          {founder.specialties.map((specialty, idx) => (
+                            <motion.span
+                              key={`${founder.name}-${specialty}-${idx}`}
+                              role="listitem"
+                              className="flex items-center gap-3 px-4 py-2 bg-white text-skizen-black text-sm font-medium rounded-full border border-gray-100 shadow-sm transition-colors duration-150 w-full md:max-w-xs"
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={inView ? { opacity: 1, y: 0 } : {}}
+                              transition={{ duration: 0.35, delay: 1.4 + index * 0.18 + idx * 0.04 }}
+                            >
+                              <span aria-hidden className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-skizen-accent to-orange-400 flex-shrink-0" />
+                              <span className="truncate">{specialty}</span>
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Social Links */}
+                      <div className="flex items-center gap-3 mt-2">
+                        {founder.linkedin && (
+                          <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-skizen-accent hover:underline">
+                            <Linkedin className="w-4 h-4" />
+                            <span className="hidden md:inline">LinkedIn</span>
+                          </a>
+                        )}
+                        {founder.portfolio && (
+                          <a href={founder.portfolio} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-skizen-accent hover:underline">
+                            <Globe className="w-4 h-4" />
+                            <span className="hidden md:inline">Portfolio</span>
+                          </a>
+                        )}
                       </div>
                     </div>
 
