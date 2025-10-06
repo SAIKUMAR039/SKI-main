@@ -21,7 +21,7 @@ const FeaturedGraphicDesign: React.FC = () => {
           .select('*')
           .eq('featured', true)
           .order('created_at', { ascending: false })
-          .limit(4);
+          .limit(8);
 
         if (error) {
           throw error;

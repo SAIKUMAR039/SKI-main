@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Eye, X, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ const GraphicDesignPage: React.FC = () => {
   const [designWorks, setDesignWorks] = useState<DesignWork[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copiedMessage, setCopiedMessage] = useState('');
 
   useEffect(() => {
     const fetchDesignWorks = async () => {
@@ -38,6 +39,28 @@ const GraphicDesignPage: React.FC = () => {
 
     fetchDesignWorks();
   }, []);
+  // Close modal on Escape and prevent background scroll when modal is open
+  useEffect(() => {
+    if (!selectedWork) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedWork(null);
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [selectedWork]);
+
+  // Focus close button when modal opens for accessibility
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => {
+    if (selectedWork && closeBtnRef.current) {
+      closeBtnRef.current.focus();
+    }
+  }, [selectedWork]);
   // Loading and error states
   if (loading) {
     return (
@@ -85,7 +108,6 @@ const GraphicDesignPage: React.FC = () => {
  
 
   
-
   const handleImageLoad = (id: number) => {
     setImageLoading(prev => {
       const newSet = new Set(prev);
@@ -96,6 +118,20 @@ const GraphicDesignPage: React.FC = () => {
 
   const handleWorkClick = (work: DesignWork) => {
     setSelectedWork(work);
+  };
+
+
+  const handleCopyLink = async (url?: string) => {
+    if (!url) return;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedMessage('Link copied to clipboard');
+      setTimeout(() => setCopiedMessage(''), 2000);
+    } catch (e) {
+      console.warn('Clipboard copy failed', e);
+      setCopiedMessage('Copy failed');
+      setTimeout(() => setCopiedMessage(''), 2000);
+    }
   };
 
   return (
@@ -149,86 +185,86 @@ const GraphicDesignPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Pinterest-style Gallery */}
+      {/* Pinterest-style Gallery (Masonry) */}
       <section className="py-8 sm:py-12 lg:py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Masonry Grid - 2 columns mobile, 5 columns desktop */}
-          <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 sm:gap-6 lg:gap-8 space-y-4 sm:space-y-6 lg:space-y-8">
-            {designWorks.map((work, index) => (
-              <motion.div
-                key={work.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="break-inside-avoid mb-4 sm:mb-6 lg:mb-8 group cursor-pointer"
-                onClick={() => handleWorkClick(work)}
-              >
-                <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500">
-                  {/* Media Container */}
-                  <div className="relative overflow-hidden">
-                    {/* Skeleton Placeholder */}
-                    {!imageLoading.has(work.id) && (
-                      <div className={`w-full ${work.height} bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse`} />
-                    )}
+              {/* Masonry Grid - 2 columns mobile, 5 columns desktop */}
+              <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 sm:gap-6 lg:gap-8 space-y-4 sm:space-y-6 lg:space-y-8">
+                {designWorks.map((work, index) => (
+                  <motion.div
+                    key={work.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="break-inside-avoid mb-4 sm:mb-6 lg:mb-8 group cursor-pointer"
+                    onClick={() => handleWorkClick(work)}
+                  >
+                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500">
+                      {/* Media Container */}
+                      <div className="relative overflow-hidden">
+                        {/* Skeleton Placeholder */}
+                        {!imageLoading.has(work.id) && (
+                          <div className={`w-full ${work.height} bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse`} />
+                        )}
                     
-                    {/* Image */}
-                    {work.type === 'image' && (
-                      <motion.img
-                        src={work.thumbnail || work.src}
-                        alt={work.title}
-                        className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-                          imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
-                        }`}
-                        style={{ position: imageLoading.has(work.id) ? 'relative' : 'absolute' }}
-                        onLoad={() => handleImageLoad(work.id)}
-                        loading="lazy"
-                      />
-                    )}
+                        {/* Image */}
+                        {work.type === 'image' && (
+                          <motion.img
+                            src={work.thumbnail || work.src}
+                            alt={work.title}
+                            className={`w-full object-cover transition-transform duration-500 md:group-hover:scale-110 ${
+                              imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            style={{ position: imageLoading.has(work.id) ? 'relative' : 'absolute' }}
+                            onLoad={() => handleImageLoad(work.id)}
+                            loading="lazy"
+                          />
+                        )}
                     
-                    {/* Video */}
-                    {work.type === 'video' && (
-                      <div className="relative">
-                        <motion.video
-                          src={work.src}
-                          poster={work.thumbnail}
-                          className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-                            imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          style={{ position: imageLoading.has(work.id) ? 'relative' : 'absolute' }}
-                          onLoadedMetadata={() => handleImageLoad(work.id)}
-                          preload="metadata"
-                          playsInline
-                          muted
-                          controls={false}
-                        />
+                        {/* Video */}
+                        {work.type === 'video' && (
+                          <div className="relative">
+                            <motion.video
+                              src={work.src}
+                              poster={work.thumbnail}
+                              className={`w-full object-cover transition-transform duration-500 md:group-hover:scale-110 ${
+                                imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              style={{ position: imageLoading.has(work.id) ? 'relative' : 'absolute' }}
+                              onLoadedMetadata={() => handleImageLoad(work.id)}
+                              preload="metadata"
+                              playsInline
+                              muted
+                              controls={false}
+                            />
 
-                        {/* Video Play Button */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                            <Play className="w-6 h-6 sm:w-8 sm:h-8 text-skizen-black ml-1" />
+                            {/* Video Play Button */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                                <Play className="w-6 h-6 sm:w-8 sm:h-8 text-skizen-black ml-1" />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                    
+                        {/* Overlay on Hover - apply only on md+ to avoid persistent 'hover' on touch devices */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 md:group-hover:opacity-100 transition-all duration-300">
+                          <div className="absolute top-3 right-3 flex gap-2">
+                            <motion.button
+                              onClick={(e) => e.stopPropagation()}
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="p-2 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white hover:bg-white/30 transition-all duration-300"
+                            >
+                              <Download className="w-4 h-4" />
+                            </motion.button>
                           </div>
                         </div>
                       </div>
-                    )}
-                    
-                    {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <div className="absolute top-3 right-3 flex gap-2">
-                        <motion.button
-                          onClick={(e) => e.stopPropagation()}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="p-2 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white hover:bg-white/30 transition-all duration-300"
-                        >
-                          <Download className="w-4 h-4" />
-                        </motion.button>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </motion.div>
+                ))}
+              </div>
 
           {/* Load More Button */}
           <motion.div
@@ -268,38 +304,60 @@ const GraphicDesignPage: React.FC = () => {
             >
               {/* Close Button */}
               <button
+                ref={closeBtnRef}
                 onClick={() => setSelectedWork(null)}
+                aria-label="Close preview"
                 className="absolute top-4 right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-200"
               >
                 <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
               </button>
 
-              {/* Content */}
-              <div className="relative">
-                {selectedWork.type === 'image' ? (
-                  <img
-                    src={selectedWork.src}
-                    alt={selectedWork.title}
-                    className="w-full h-auto max-h-[80vh] object-contain"
-                  />
-                ) : (
-                  <div className="relative">
-                    <video
-                      src={selectedWork.src}
-                      poster={selectedWork.thumbnail}
-                      className="w-full h-auto max-h-[80vh] object-contain"
-                      controls
-                      autoPlay
-                      muted
-                    />
+              {/* Redesigned Content: responsive media + metadata/actions */}
+              <div className="p-6" role="dialog" aria-modal="true" aria-labelledby="gd-modal-title">
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  {/* Media column */}
+                  <div className="md:w-2/3 w-full flex items-center justify-center bg-gray-50 rounded-xl p-4 shadow-sm">
+                    {selectedWork.type === 'image' ? (
+                      <img
+                        src={selectedWork.src}
+                        alt={selectedWork.title}
+                        className="max-h-[75vh] max-w-full w-auto object-contain rounded-md"
+                      />
+                    ) : (
+                      <video
+                        src={selectedWork.src}
+                        poster={selectedWork.thumbnail}
+                        controls
+                        autoPlay={false}
+                        className="max-h-[75vh] max-w-full w-auto object-contain rounded-md"
+                      />
+                    )}
                   </div>
-                )}
-                
-                {/* Title */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6">
-                  <h3 className="text-white text-lg sm:text-xl lg:text-2xl font-semibold">
-                    {selectedWork.title}
-                  </h3>
+
+                  {/* Metadata / actions column */}
+                  <div className="md:w-1/3 w-full flex flex-col">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-1">
+                        <h3 id="gd-modal-title" className="text-gray-900 text-xl sm:text-2xl font-semibold leading-snug">{selectedWork.title}</h3>
+                        <div className="mt-2 flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-skizen-accent/10 text-skizen-accent border border-skizen-accent/20">{selectedWork.category}</span>
+                          <span className="text-xs text-gray-500">{selectedWork.type}</span>
+                        </div>
+                        <div className="mt-3 text-sm text-gray-500">
+                          {selectedWork.created_at ? new Date(selectedWork.created_at).toLocaleString() : ''}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 flex flex-col gap-3">
+                      
+                      <button onClick={() => setSelectedWork(null)} className="mt-3 w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 text-sm">
+                        Close
+                      </button>
+                    </div>
+
+                  
+                  </div>
                 </div>
               </div>
             </motion.div>
