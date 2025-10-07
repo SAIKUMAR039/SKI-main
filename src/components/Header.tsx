@@ -81,7 +81,7 @@ const Header = () => {
                    <img 
                      src="/full_logo.png" 
                      alt="SKIZEN Logo" 
-                     className="h-10 lg:h-12 w-auto object-contain rounded-md"
+                     className="h-10 lg:h-12 w-auto object-contain rounded-full"
                    />
                   </div>
                   <div className="hidden sm:block">
