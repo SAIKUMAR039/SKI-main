@@ -22,6 +22,9 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
   }, []);
   
   useEffect(() => {
+    // detect mobile
+    setIsMobile(window.innerWidth < 768);
+
     // Lock scroll while loading (robust)
     scrollYRef.current = window.scrollY || 0;
     prevBodyStylesRef.current = {
@@ -48,7 +51,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
     window.addEventListener('touchmove', touchHandlerRef.current, { passive: false });
     window.addEventListener('keydown', keyHandlerRef.current as any, { passive: false } as any);
 
-    // Fallback in case 'ended' doesn't fire
+    // Fallback in case 'ended' doesn't fire (video path)
     fallbackTimerRef.current = window.setTimeout(() => {
       finish();
     }, 5200);
@@ -67,6 +70,15 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
       if (fallbackTimerRef.current) window.clearTimeout(fallbackTimerRef.current);
     };
   }, []);
+
+  // Mobile-only spinner short timeout
+  useEffect(() => {
+    if (!isMobile || isComplete) return;
+    const id = window.setTimeout(() => {
+      finish();
+    }, 1800);
+    return () => window.clearTimeout(id);
+  }, [isMobile, isComplete]);
 
   const restoreLock = () => {
     // Restore scroll lock immediately
@@ -103,17 +115,26 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
           onWheel={(e) => e.preventDefault()}
           onTouchMove={(e) => e.preventDefault()}
         >
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover"
-            src="/media/intro.mp4"
-            poster="/media/intro_poster.jpg"
-            preload="auto"
-            autoPlay
-            muted
-            playsInline
-            onEnded={handleEnded}
-          />
+          {isMobile ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <span className="text-white/80 text-sm tracking-wide">Loading…</span>
+              </div>
+            </div>
+          ) : (
+            <video
+              ref={videoRef}
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/media/intro.mp4"
+              poster="/media/intro_poster.jpg"
+              preload="auto"
+              autoPlay
+              muted
+              playsInline
+              onEnded={handleEnded}
+            />
+          )}
         </div>
       )}
     </>
