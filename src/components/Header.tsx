@@ -63,8 +63,13 @@ const Header = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center justify-between h-16 lg:h-20 relative">
             
+            {/* Centered brand text on mobile */}
+            <div className="absolute inset-0 flex items-center justify-center sm:hidden pointer-events-none">
+              <span className="text-skizen-black font-bold text-lg tracking-tight font-inter">SKIZEN</span>
+            </div>
+
             {/* Logo */}
             <div className="flex items-center">
               <div 

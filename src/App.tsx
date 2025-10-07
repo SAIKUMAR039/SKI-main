@@ -94,7 +94,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
-            <Route path="/admin-skizen-dashboard" element={<AdminPage />} />
+            <Route path="/skizen-designs" element={<AdminPage />} />
           </Routes>
           
           <Footer />

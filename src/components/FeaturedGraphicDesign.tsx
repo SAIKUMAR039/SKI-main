@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useMemo } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Eye, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { supabase, DesignWork } from '../lib/supabase';
@@ -8,6 +8,8 @@ const FeaturedGraphicDesign: React.FC = () => {
   const navigate = useNavigate();
   const [imageLoading, setImageLoading] = useState<Set<number>>(new Set());
   const [featuredWorks, setFeaturedWorks] = useState<DesignWork[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [lightbox, setLightbox] = useState<{ open: boolean; work?: DesignWork }>({ open: false });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +17,7 @@ const FeaturedGraphicDesign: React.FC = () => {
     const fetchFeaturedWorks = async () => {
       try {
         setLoading(true);
-        // Fetch only 4 featured works
+        // Fetch 8 featured works
         const { data, error } = await supabase
           .from('design_works')
           .select('*')
@@ -85,6 +87,67 @@ const FeaturedGraphicDesign: React.FC = () => {
     });
   };
 
+  const categories = useMemo(() => {
+    const set = new Set<string>(['All']);
+    featuredWorks.forEach(w => set.add(w.category || 'Other'));
+    return Array.from(set);
+  }, [featuredWorks]);
+
+  const filteredWorks = useMemo(() => {
+    if (activeCategory === 'All') return featuredWorks;
+    return featuredWorks.filter(w => (w.category || 'Other') === activeCategory);
+  }, [activeCategory, featuredWorks]);
+
+  // Enable tilt only for fine pointers
+  const [enableTilt, setEnableTilt] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      try {
+        const mq = window.matchMedia('(pointer: fine)');
+        setEnableTilt(!!mq.matches);
+      } catch {}
+    }
+  }, []);
+
+  // 3D tilt helpers
+  const TiltCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    if (!enableTilt) {
+      return <div className="transform-gpu will-change-transform">{children}</div>;
+    }
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [-50, 50], [8, -8]);
+    const rotateY = useTransform(x, [-50, 50], [-8, 8]);
+
+    let rafId = 0;
+    const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+        const px = e.clientX - rect.left - rect.width / 2;
+        const py = e.clientY - rect.top - rect.height / 2;
+        x.set(px);
+        y.set(py);
+        rafId = 0;
+      });
+    };
+
+    const onMouseLeave = () => {
+      x.set(0); y.set(0);
+    };
+
+    return (
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' as any }}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        className="[perspective:1000px] transform-gpu will-change-transform"
+      >
+        {children}
+      </motion.div>
+    );
+  };
+
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-skizen-gray/30 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,31 +192,52 @@ const FeaturedGraphicDesign: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        {/* Featured Works Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 mb-12 sm:mb-16">
-          {featuredWorks.map((work, index) => (
+        {/* Filters (hidden on mobile) */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="hidden sm:flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10"
+        >
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${activeCategory === cat ? 'bg-skizen-black text-white border-skizen-black' : 'bg-white text-skizen-black border-gray-200 hover:border-skizen-black/40'}`}
+            >
+              {cat}
+            </button>
+          ))}
+        </motion.div>
+        {/* Masonry Grid (all breakpoints, Pinterest-style) */}
+        <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-4 xl:columns-5 gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 [column-fill:_balance]"><div className="mb-8 break-inside-avoid">
+          {/* spacer to help balance columns */}
+        </div>
+          {filteredWorks.map((work, index) => (
             <motion.div
               key={work.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.45, delay: (index % 6) * 0.05 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
-              onClick={() => navigate('/graphic-design')}
+              className="group cursor-pointer mb-8 break-inside-avoid"
+              onClick={() => setLightbox({ open: true, work })}
             >
-              <div className="bg-white/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+              <TiltCard>
+              <div className="bg-white/90 backdrop-blur-md rounded-2xl overflow-hidden border border-gray-200/60 shadow-md hover:shadow-xl transition-shadow duration-200">
                 {/* Image Container */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden will-change-transform transform-gpu">
                   {/* Skeleton Placeholder */}
                   {!imageLoading.has(work.id) && (
-                    <div className={`w-full ${work.height} bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse`} />
+                    <div className={`w-full min-h-[200px] bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse`} />
                   )}
                   
                   {/* Image (uses thumbnail if available) */}
                   <motion.img
                     src={work.thumbnail || work.src}
                     alt={work.title}
-                    className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                    className={`w-full h-auto object-cover transition-transform duration-200 ease-out group-hover:scale-[1.01] transform-gpu will-change-transform ${
                       imageLoading.has(work.id) ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ position: imageLoading.has(work.id) ? 'relative' : 'absolute' }}
@@ -161,10 +245,10 @@ const FeaturedGraphicDesign: React.FC = () => {
                     loading="lazy"
                   />
                   
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {/* Overlay (hidden on mobile; show on hover md+) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 md:group-hover:opacity-100 transition-all duration-300">
                     <div className="absolute bottom-4 left-4 right-4">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
+                      <div className="hidden md:block bg-white/90 backdrop-blur-sm rounded-lg p-3">
                         <h3 className="text-skizen-black font-semibold text-sm mb-1">{work.title}</h3>
                         <p className="text-gray-600 text-xs">{work.category}</p>
                       </div>
@@ -172,6 +256,7 @@ const FeaturedGraphicDesign: React.FC = () => {
                   </div>
                 </div>
               </div>
+              </TiltCard>
             </motion.div>
           ))}
         </div>
@@ -195,6 +280,36 @@ const FeaturedGraphicDesign: React.FC = () => {
           </motion.button>
         </motion.div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox.open && lightbox.work && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setLightbox({ open: false })}
+        >
+          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
+              <img src={lightbox.work.src} alt={lightbox.work.title} className="w-full h-auto" />
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-skizen-black">{lightbox.work.title}</h3>
+                  <p className="text-sm text-gray-500">{lightbox.work.category}</p>
+                </div>
+                <button
+                  onClick={() => navigate('/graphic-design')}
+                  className="inline-flex items-center gap-2 bg-skizen-black text-white px-4 py-2 rounded-lg text-sm hover:bg-skizen-accent transition-colors"
+                >
+                  View Details
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
