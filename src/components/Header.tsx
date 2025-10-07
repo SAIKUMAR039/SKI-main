@@ -198,15 +198,7 @@ const Header = () => {
         </div>
       )}
 
-      {/* Floating Contact Button - Mobile Only */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-30">
-        <button
-          onClick={() => handleNavClick('/contact')}
-          className="bg-skizen-accent text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse-glow focus:outline-none focus:ring-0"
-        >
-          <ArrowUpRight size={20} className="text-white" />
-        </button>
-      </div>
+      {/* Floating Contact Button - Mobile Only (removed as requested) */}
     </>
   );
 };

@@ -7,17 +7,35 @@ interface LoadingAnimationProps {
 
 const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simple 2.5 second loading with just logo
+    // Smooth progress animation
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 50);
+
+    // Complete loading after 2.5 seconds
     const timer = setTimeout(() => {
-      setIsComplete(true);
+      setProgress(100);
       setTimeout(() => {
-        onComplete();
-      }, 500);
+        setIsComplete(true);
+        setTimeout(() => {
+          onComplete();
+        }, 600);
+      }, 300);
     }, 2500);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(progressInterval);
+    };
   }, [onComplete]);
 
   return (
@@ -25,99 +43,195 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
       {!isComplete && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-skizen-black to-gray-800 flex items-center justify-center"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="fixed inset-0 z-50 bg-white flex items-center justify-center overflow-hidden"
         >
-          {/* Animated Background */}
-          <div className="absolute inset-0 overflow-hidden">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-skizen-accent/10 via-orange-500/5 to-red-500/10"
-              animate={{
-                background: [
-                  "linear-gradient(45deg, rgba(255, 107, 53, 0.1), rgba(255, 138, 101, 0.05), rgba(255, 69, 0, 0.1))",
-                  "linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 138, 101, 0.1), rgba(255, 69, 0, 0.15))",
-                  "linear-gradient(225deg, rgba(255, 107, 53, 0.1), rgba(255, 138, 101, 0.05), rgba(255, 69, 0, 0.1))",
-                  "linear-gradient(315deg, rgba(255, 107, 53, 0.15), rgba(255, 138, 101, 0.1), rgba(255, 69, 0, 0.15))",
-                ]
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Floating Particles */}
-            {[...Array(15)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-skizen-accent/60 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0, 0.8, 0],
-                  scale: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 3,
-                }}
-              />
-            ))}
+          {/* Subtle Background Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.02]">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
+              backgroundSize: '60px 60px'
+            }} />
           </div>
 
-          {/* Main Content - Just Logo */}
-          <div className="relative z-10 flex items-center justify-center">
+          {/* Animated Gradient Orbs */}
+          <motion.div
+            className="absolute top-1/4 -left-32 w-96 h-96 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(255, 107, 53, 0.08), transparent 70%)',
+              filter: 'blur(40px)'
+            }}
+            animate={{
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <motion.div
+            className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(255, 138, 101, 0.06), transparent 70%)',
+              filter: 'blur(40px)'
+            }}
+            animate={{
+              x: [0, -50, 0],
+              y: [0, -30, 0],
+              scale: [1, 1.15, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+
+          {/* Main Content Container */}
+          <div className="relative z-10 flex flex-col items-center justify-center space-y-12 px-8">
+            {/* Logo Container */}
             <motion.div
-              initial={{ scale: 0, opacity: 0, rotate: -180 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 1.2, 
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 100,
-                damping: 15
+                duration: 0.8, 
+                ease: [0.22, 1, 0.36, 1]
               }}
               className="relative"
             >
               {/* Logo */}
-              <img 
+              <motion.img 
                 src="/full_logo.png" 
                 alt="SKIZEN Logo" 
-                className="h-24 md:h-32 lg:h-40 w-auto"
-              />
-              
-              {/* Animated Glow Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-skizen-accent/30 to-orange-500/30 rounded-lg blur-xl"
+                className="h-20 md:h-28 lg:h-32 w-auto relative z-10 rounded-full"
                 animate={{
-                  opacity: [0, 0.6, 0],
-                  scale: [1, 1.2, 1],
+                  filter: ['brightness(1)', 'brightness(1.05)', 'brightness(1)']
                 }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  repeatDelay: 0.5
-                }}
-              />
-              
-              {/* Pulsing Ring */}
-              <motion.div
-                className="absolute inset-0 border-2 border-skizen-accent/50 rounded-lg"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.5, 0.8, 0.5],
-                }}
-                transition={{ 
-                  duration: 1.5, 
-                  repeat: Infinity, 
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
+              
+              {/* Subtle Shadow */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 blur-2xl transform translate-y-8" />
+            </motion.div>
+
+            {/* Tagline */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-center space-y-2"
+            >
+              <motion.p 
+                className="text-sm md:text-base text-gray-500 font-light tracking-wider uppercase"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                AI-Driven Digital Marketing
+              </motion.p>
+            </motion.div>
+
+            {/* Modern Progress Bar */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="w-64 md:w-80 space-y-3"
+            >
+              {/* Progress Bar Container */}
+              <div className="relative h-1 bg-gray-100 rounded-full overflow-hidden">
+                {/* Progress Fill */}
+                <motion.div
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-500 rounded-full"
+                  style={{
+                    width: `${progress}%`,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  {/* Shimmer Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                    animate={{
+                      x: ['-100%', '200%']
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </motion.div>
+              </div>
+
+              {/* Progress Percentage */}
+              <div className="flex justify-between items-center text-xs text-gray-400">
+                <span className="font-light">Loading</span>
+                <motion.span 
+                  className="font-medium tabular-nums"
+                  key={progress}
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {progress}%
+                </motion.span>
+              </div>
+            </motion.div>
+
+            {/* Loading Dots */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="flex space-x-2"
+            >
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-2 h-2 bg-orange-500 rounded-full"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.4, 1, 0.4],
+                  }}
+                  transition={{
+                    duration: 1.2,
+                    repeat: Infinity,
+                    delay: i * 0.2,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
             </motion.div>
           </div>
+
+          {/* Corner Accent Lines */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="absolute top-8 left-8 w-12 h-12"
+          >
+            <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-500/40 to-transparent" />
+            <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-orange-500/40 to-transparent" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="absolute bottom-8 right-8 w-12 h-12"
+          >
+            <div className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-orange-500/40 to-transparent" />
+            <div className="absolute bottom-0 right-0 w-0.5 h-full bg-gradient-to-t from-orange-500/40 to-transparent" />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
