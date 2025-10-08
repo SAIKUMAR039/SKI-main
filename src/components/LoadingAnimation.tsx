@@ -15,15 +15,12 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
   const wheelHandlerRef = useRef<(e: Event) => void>();
   const touchHandlerRef = useRef<(e: Event) => void>();
   const keyHandlerRef = useRef<(e: KeyboardEvent) => void>();
-  const [isMobile, setIsMobile] = useState(false);
+  const onCompleteRef = useRef(onComplete);
   useEffect(() => {
-    // Check if mobile
-    setIsMobile(window.innerWidth < 768);
-  }, []);
-  
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
   useEffect(() => {
-    // detect mobile
-    setIsMobile(window.innerWidth < 768);
 
     // Lock scroll while loading (robust)
     scrollYRef.current = window.scrollY || 0;
@@ -33,13 +30,13 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
       top: document.body.style.top,
       width: document.body.style.width,
     };
-    prevHtmlOverscrollRef.current = (document.documentElement.style as any).overscrollBehavior || '';
+    prevHtmlOverscrollRef.current = document.documentElement.style.overscrollBehavior || '';
 
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollYRef.current}px`;
     document.body.style.width = '100%';
-    (document.documentElement.style as any).overscrollBehavior = 'none';
+    document.documentElement.style.overscrollBehavior = 'none';
 
     wheelHandlerRef.current = (e: Event) => { e.preventDefault(); };
     touchHandlerRef.current = (e: Event) => { e.preventDefault(); };
@@ -49,11 +46,22 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
     };
     window.addEventListener('wheel', wheelHandlerRef.current, { passive: false });
     window.addEventListener('touchmove', touchHandlerRef.current, { passive: false });
-    window.addEventListener('keydown', keyHandlerRef.current as any, { passive: false } as any);
+    if (keyHandlerRef.current) window.addEventListener('keydown', keyHandlerRef.current);
 
     // Fallback in case 'ended' doesn't fire (video path)
     fallbackTimerRef.current = window.setTimeout(() => {
-      finish();
+      // Inline finish to avoid hook deps
+      document.body.style.overflow = prevBodyStylesRef.current.overflow;
+      document.body.style.position = prevBodyStylesRef.current.position;
+      document.body.style.top = prevBodyStylesRef.current.top;
+      document.body.style.width = prevBodyStylesRef.current.width;
+      document.documentElement.style.overscrollBehavior = prevHtmlOverscrollRef.current;
+      window.scrollTo(0, scrollYRef.current);
+      if (wheelHandlerRef.current) window.removeEventListener('wheel', wheelHandlerRef.current);
+      if (touchHandlerRef.current) window.removeEventListener('touchmove', touchHandlerRef.current);
+      if (keyHandlerRef.current) window.removeEventListener('keydown', keyHandlerRef.current);
+      setIsComplete(true);
+      setTimeout(() => onCompleteRef.current && onCompleteRef.current(), 200);
     }, 5200);
 
     return () => {
@@ -62,23 +70,16 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
       document.body.style.position = prevBodyStylesRef.current.position;
       document.body.style.top = prevBodyStylesRef.current.top;
       document.body.style.width = prevBodyStylesRef.current.width;
-      (document.documentElement.style as any).overscrollBehavior = prevHtmlOverscrollRef.current;
+      document.documentElement.style.overscrollBehavior = prevHtmlOverscrollRef.current;
       window.scrollTo(0, scrollYRef.current);
-      if (wheelHandlerRef.current) window.removeEventListener('wheel', wheelHandlerRef.current as any);
-      if (touchHandlerRef.current) window.removeEventListener('touchmove', touchHandlerRef.current as any);
-      if (keyHandlerRef.current) window.removeEventListener('keydown', keyHandlerRef.current as any);
+      if (wheelHandlerRef.current) window.removeEventListener('wheel', wheelHandlerRef.current);
+      if (touchHandlerRef.current) window.removeEventListener('touchmove', touchHandlerRef.current);
+      if (keyHandlerRef.current) window.removeEventListener('keydown', keyHandlerRef.current);
       if (fallbackTimerRef.current) window.clearTimeout(fallbackTimerRef.current);
     };
   }, []);
 
-  // Mobile-only spinner short timeout
-  useEffect(() => {
-    if (!isMobile || isComplete) return;
-    const id = window.setTimeout(() => {
-      finish();
-    }, 1800);
-    return () => window.clearTimeout(id);
-  }, [isMobile, isComplete]);
+  // Mobile previously showed a spinner and exited early; now we play a mobile video, so no quick-finish.
 
   const restoreLock = () => {
     // Restore scroll lock immediately
@@ -86,11 +87,11 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
     document.body.style.position = prevBodyStylesRef.current.position;
     document.body.style.top = prevBodyStylesRef.current.top;
     document.body.style.width = prevBodyStylesRef.current.width;
-    (document.documentElement.style as any).overscrollBehavior = prevHtmlOverscrollRef.current;
+    document.documentElement.style.overscrollBehavior = prevHtmlOverscrollRef.current;
     window.scrollTo(0, scrollYRef.current);
-    if (wheelHandlerRef.current) window.removeEventListener('wheel', wheelHandlerRef.current as any);
-    if (touchHandlerRef.current) window.removeEventListener('touchmove', touchHandlerRef.current as any);
-    if (keyHandlerRef.current) window.removeEventListener('keydown', keyHandlerRef.current as any);
+    if (wheelHandlerRef.current) window.removeEventListener('wheel', wheelHandlerRef.current);
+    if (touchHandlerRef.current) window.removeEventListener('touchmove', touchHandlerRef.current);
+    if (keyHandlerRef.current) window.removeEventListener('keydown', keyHandlerRef.current);
     if (fallbackTimerRef.current) window.clearTimeout(fallbackTimerRef.current);
   };
 
@@ -115,26 +116,21 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ onComplete }) => {
           onWheel={(e) => e.preventDefault()}
           onTouchMove={(e) => e.preventDefault()}
         >
-          {isMobile ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                <span className="text-white/80 text-sm tracking-wide">Loading…</span>
-              </div>
-            </div>
-          ) : (
-            <video
-              ref={videoRef}
-              className="absolute inset-0 w-full h-full object-cover"
-              src="/media/intro.mp4"
-              poster="/media/intro_poster.jpg"
-              preload="auto"
-              autoPlay
-              muted
-              playsInline
-              onEnded={handleEnded}
-            />
-          )}
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover"
+            poster="/media/intro_poster.jpg"
+            preload="auto"
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleEnded}
+          >
+            {/* Mobile ratio video for small screens */}
+            <source src="/media/intro.mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+            {/* Default/desktop video */}
+            <source src="/media/intro.mp4" type="video/mp4" media="(min-width: 768px)" />
+          </video>
         </div>
       )}
     </>
