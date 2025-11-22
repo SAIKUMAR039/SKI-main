@@ -78,14 +78,14 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'skizen.creativelab@gmail.com',
-      link: 'mailto:skizen.creativelab@gmail.com',
+      value: 'info@skizen.in',
+      link: 'mailto:info@skizen.in',
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: '+91 9392898633',
-      link: 'tel:+919392898633',
+      value: '+91 6305680890',
+      link: 'tel:+916305680890',
     },
     {
       icon: MapPin,
